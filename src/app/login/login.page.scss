@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'passion_oneregular';
+    src: url('../../assets/fonts/passionone-regular-webfont.woff2') format('woff2'),
+         url('../../assets/fonts/passionone-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+ion-content {
+    background-image: url('../../assets/images/background-login.jpg');
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+}
+
+h1 {
+    font-family: 'passion_oneregular';
+    text-align: center;
+    
+    color: white;
+    @media (max-width: 700px) {
+        font-size: 4rem;
+    }
+}
+
+.login-form {
+    width: 40%;
+    background-color: white;
+    margin: 0 auto;
+    padding: 50px;
+    @media (max-width: 700px) {
+        width: 90%;
+        padding: 10px;
+    }
+}

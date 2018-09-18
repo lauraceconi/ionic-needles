@@ -1,0 +1,43 @@
+<ion-content padding>
+  <h1>Wanderlust</h1>
+  <div class="login-form">
+    <div *ngIf="abaAtiva == 'cadastro'">
+      <h2>Cadastre-se</h2>
+      <ion-item>
+        <ion-label position="floating">Nome</ion-label>
+        <ion-input [(ngModel)]="firstname"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Sobrenome</ion-label>
+        <ion-input [(ngModel)]="lastname"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">E-mail</ion-label>
+        <ion-input [(ngModel)]="email" type="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Senha</ion-label>
+        <ion-input [(ngModel)]="password_cadastro" type="password"></ion-input>
+      </ion-item>
+      <ion-button expand="block" color="primary" [disabled]="!firstname || !lastname || !email || !password_cadastro" (click)="cadastro()">Cadastrar</ion-button>
+      <p>Já possui conta?
+        <br/><a href="#" (click)="trocarAba('login')">Entrar</a>
+      </p>
+    </div>
+    <div *ngIf="abaAtiva == 'login'">
+      <h2>Entrar</h2>
+      <ion-item>
+        <ion-label position="floating">E-mail</ion-label>
+        <ion-input [(ngModel)]="username"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Senha</ion-label>
+        <ion-input [(ngModel)]="password" type="password"></ion-input>
+      </ion-item>
+      <ion-button expand="block" color="primary" [disabled]="!username || !password" (click)="login()">Entrar</ion-button>
+      <p>Não possui conta?
+        <br/><a href="#" (click)="trocarAba('cadastro')">Cadastre-se</a>
+      </p>
+    </div>
+  </div>
+</ion-content>
