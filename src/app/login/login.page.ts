@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { LoginService } from '../services/login.service';
@@ -21,7 +22,8 @@ export class LoginPage implements OnInit {
 
   constructor(public menuCtrl: MenuController, 
               public service: LoginService,
-              public storage: Storage) { }
+              public storage: Storage,
+              public router: Router) { }
 
   ngOnInit() {
     this.menuCtrl.enable(false);
@@ -37,6 +39,7 @@ export class LoginPage implements OnInit {
     this.service.login(this.username, this.password).subscribe(
       response => {
         this.storage.set('token', response['token']);
+        this.router.navigateByUrl('/feed');
     });
   }
 

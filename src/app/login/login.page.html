@@ -21,7 +21,7 @@
       </ion-item>
       <ion-button expand="block" color="primary" [disabled]="!firstname || !lastname || !email || !password_cadastro" (click)="cadastro()">Cadastrar</ion-button>
       <p>Já possui conta?
-        <br/><a href="#" (click)="trocarAba('login')">Entrar</a>
+        <br/><button type="button" (click)="trocarAba('login')">Entrar</button>
       </p>
     </div>
     <div *ngIf="abaAtiva == 'login'">
@@ -36,7 +36,7 @@
       </ion-item>
       <ion-button expand="block" color="primary" [disabled]="!username || !password" (click)="login()">Entrar</ion-button>
       <p>Não possui conta?
-        <br/><a href="#" (click)="trocarAba('cadastro')">Cadastre-se</a>
+        <br/><button type="button" (click)="trocarAba('cadastro')">Cadastre-se</button>
       </p>
     </div>
   </div>
