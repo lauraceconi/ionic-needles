@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
+import { SETTINGS } from './settings';
 
 @Component({
   selector: 'app-root',
@@ -49,10 +50,5 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
-
-    //this.storage.get('token').then(token => {
-    //  token ? this.router.navigateByUrl('/feed') : this.router.navigateByUrl('/login');
-    //});
-
   }
 }

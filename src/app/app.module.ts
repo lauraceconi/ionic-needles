@@ -5,6 +5,7 @@ import { RouterModule, RouteReuseStrategy, Routes } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { App } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -12,9 +13,12 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
+import { ModalAlertaComponent } from './modal-alerta/modal-alerta.component';
+import { ApiService } from './services/api.service';
+import { DiarioService } from './services/diario.service';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ModalAlertaComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -34,6 +38,9 @@ import { IonicStorageModule } from '@ionic/storage';
   providers: [
     StatusBar,
     SplashScreen,
+    ApiService,
+    DiarioService,
+    App,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

@@ -22,3 +22,13 @@ ion-router-outlet ion-content {
 ion-card {
     background-color: #fff;
 }
+
+.split-pane-md.split-pane-visible>.split-pane-side {
+    max-width: 20%;
+}
+
+ion-card {
+    &:first-child {
+        margin-left:0;
+    }
+}

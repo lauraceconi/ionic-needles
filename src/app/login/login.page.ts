@@ -1,8 +1,9 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { MenuController, Events } from '@ionic/angular';
 import { LoginService } from '../services/login.service';
 import { Storage } from '@ionic/storage';
+import { SETTINGS } from '../settings';
 
 
 @Component({
@@ -23,9 +24,21 @@ export class LoginPage implements OnInit {
   constructor(public menuCtrl: MenuController, 
               public service: LoginService,
               public storage: Storage,
-              public router: Router) { }
+              public router: Router,
+              private events: Events) {
 
-  ngOnInit() {
+    this.events.subscribe('logout', () => {
+      this.router.navigateByUrl('/login');
+    });
+  }
+
+  ionViewWillEnter() {
+    this.storage.get('token').then(token => {
+      if (token) this.router.navigateByUrl('/feed');
+    });
+  }
+
+  ngOnInit() {    
     this.menuCtrl.enable(false);
     document.getElementById('menu').style.display = 'none';
     this.abaAtiva = 'cadastro';
@@ -56,6 +69,5 @@ export class LoginPage implements OnInit {
           }
         )
     });
-  }
-
+  }  
 }

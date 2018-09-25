@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Events } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 import { SETTINGS } from '../../app/settings';
 
 @Injectable({
@@ -7,7 +9,9 @@ import { SETTINGS } from '../../app/settings';
 })
 export class LoginService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private storage: Storage,
+              private events: Events) { }
 
   public login(username, password) {
     let url = SETTINGS.SERVIDOR + 'api-token-auth/';
@@ -26,6 +30,18 @@ export class LoginService {
        'lastname': lastname,
        'email': email,
        'password': password}
+    );
+  }
+
+  public getToken() {
+    return this.storage.get('token');
+  }
+
+  public sendLogoutEvent() : void {
+    this.storage.clear().then(
+      data => {
+        this.events.publish('logout');
+      }
     );
   }
 }
