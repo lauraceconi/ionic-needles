@@ -32,3 +32,69 @@ ion-card {
         margin-left:0;
     }
 }
+
+ion-modal.alert-popup {
+    @media (min-width: 300px) and (min-height: 500px) {
+        ion-backdrop {
+            visibility: visible;
+            display: block!important;
+        }
+    }
+
+    app-modal-alerta.ion-page {
+        justify-content: start!important;
+    }
+
+    .alert-topo {
+        padding: 20px;
+        text-align: center;
+        background-color: #576574;
+        ion-icon {
+            color:#fff;
+            font-size: 4rem;
+        }
+        &.nao-autenticado {
+            background-color: #ff9f43;
+        }
+        &.nao-encontrado {
+            background-color: #ff6b6b;
+        }
+        &.permissao-negada {
+            background-color: #27ae60;
+        }
+    }
+
+    .modal-wrapper {
+        position: absolute;
+        overflow: hidden;
+        max-width: 280px;
+        border-radius: 2px;
+        width: 80vw;
+        height: 284px;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        border: 0;
+        box-shadow: 0 16px 20px rgba(0,0,0,.4);
+        background-color: #fafafa;
+    }
+
+    .alert-content {
+        padding: 20px;
+        h3 {
+            margin-top: 0;
+        }
+        p {
+            margin-bottom: 0;
+        }
+    }
+
+    .alert-footer {
+        border-top: 1px solid #e8e8e8;
+        bottom: 0;
+        position: absolute;
+        width: 100%;
+    }
+}

@@ -5,21 +5,30 @@
       <h2>Cadastre-se</h2>
       <ion-item>
         <ion-label position="floating">Nome</ion-label>
-        <ion-input [(ngModel)]="firstname"></ion-input>
+        <ion-input [(ngModel)]="dados_cadastro.firstname"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Sobrenome</ion-label>
-        <ion-input [(ngModel)]="lastname"></ion-input>
+        <ion-input [(ngModel)]="dados_cadastro.lastname"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">E-mail</ion-label>
-        <ion-input [(ngModel)]="email" type="email"></ion-input>
+        <ion-input [(ngModel)]="dados_cadastro.email" type="email"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Senha</ion-label>
-        <ion-input [(ngModel)]="password_cadastro" type="password"></ion-input>
+        <ion-input [(ngModel)]="dados_cadastro.password" type="password"></ion-input>
       </ion-item>
-      <ion-button expand="block" color="primary" [disabled]="!firstname || !lastname || !email || !password_cadastro" (click)="cadastro()">Cadastrar</ion-button>
+      <ion-button expand="block" 
+                  color="primary" 
+                  [disabled]="
+                    !dados_cadastro.firstname || 
+                    !dados_cadastro.lastname || 
+                    !dados_cadastro.email || 
+                    !dados_cadastro.password" 
+                  (click)="cadastro()">
+        Cadastrar
+      </ion-button>
       <p>Já possui conta?
         <br/><button type="button" (click)="trocarAba('login')">Entrar</button>
       </p>
@@ -28,13 +37,20 @@
       <h2>Entrar</h2>
       <ion-item>
         <ion-label position="floating">E-mail</ion-label>
-        <ion-input [(ngModel)]="username"></ion-input>
+        <ion-input [(ngModel)]="dados_login.username"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Senha</ion-label>
-        <ion-input [(ngModel)]="password" type="password"></ion-input>
+        <ion-input [(ngModel)]="dados_login.password" type="password"></ion-input>
       </ion-item>
-      <ion-button expand="block" color="primary" [disabled]="!username || !password" (click)="login()">Entrar</ion-button>
+      <ion-button expand="block" 
+                  color="primary" 
+                  [disabled]="
+                    !dados_login.username || 
+                    !dados_login.password" 
+                  (click)="login()">
+        Entrar
+      </ion-button>
       <p>Não possui conta?
         <br/><button type="button" (click)="trocarAba('cadastro')">Cadastre-se</button>
       </p>

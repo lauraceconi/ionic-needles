@@ -15,7 +15,20 @@ export class DiariosPage implements OnInit {
               public alertController: AlertController, 
               public router: Router) { }
 
+  public diarios: any;
+
   ngOnInit() {
+    this.carregarDiarios()
+  }
+
+  public carregarDiarios() {
+    this.service.getDiarios().then(response  => {
+      this.diarios = response;
+    });  
+  }
+
+  public acessarDiario(id) {
+    this.router.navigate(['/detalhes', id]);
   }
 
   public criarNovoDiario() {
@@ -43,6 +56,7 @@ export class DiariosPage implements OnInit {
           text: 'Criar',
           handler: data => {
             this.service.criarDiario(data.titulo).then(response  => {
+              debugger
               this.router.navigateByUrl('/diario');
             });    
           }

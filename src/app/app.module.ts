@@ -16,10 +16,11 @@ import { IonicStorageModule } from '@ionic/storage';
 import { ModalAlertaComponent } from './modal-alerta/modal-alerta.component';
 import { ApiService } from './services/api.service';
 import { DiarioService } from './services/diario.service';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 @NgModule({
   declarations: [AppComponent, ModalAlertaComponent],
-  entryComponents: [],
+  entryComponents: [ModalAlertaComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot({
@@ -40,7 +41,6 @@ import { DiarioService } from './services/diario.service';
     SplashScreen,
     ApiService,
     DiarioService,
-    App,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

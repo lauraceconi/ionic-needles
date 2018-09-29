@@ -13,12 +13,8 @@ import { SETTINGS } from '../settings';
 })
 export class LoginPage implements OnInit {
 
-  public username: string;
-  public password: string;
-  public firstname: string;
-  public lastname: string;
-  public email: string;
-  public password_cadastro: string;
+  public dados_login: object = {};
+  public dados_cadastro : object = {}
   public abaAtiva: string;
 
   constructor(public menuCtrl: MenuController, 
@@ -49,7 +45,11 @@ export class LoginPage implements OnInit {
   }
 
   public login() {
-    this.service.login(this.username, this.password).subscribe(
+    let dados = {}
+    for (let key in this.dados_login) {
+      dados[key] = this.dados_login[key];
+    }
+    this.service.login(dados).then(
       response => {
         this.storage.set('token', response['token']);
         this.router.navigateByUrl('/feed');
@@ -57,17 +57,14 @@ export class LoginPage implements OnInit {
   }
 
   public cadastro() {
-    this.service.cadastro(
-      this.firstname, 
-      this.lastname,
-      this.email,
-      this.password_cadastro).subscribe(
-      response  => {
-        this.service.login(this.email, this.password_cadastro).subscribe(
-          response => {
-            this.storage.set('token', response['token']);
-          }
-        )
+    let dados = {}
+    for (let key in this.dados_cadastro) {
+      dados[key] = this.dados_cadastro[key];
+    }
+    this.service.cadastro(dados).then(() => {
+      this.dados_login['username'] = this.dados_cadastro['email'];
+      this.dados_login['password'] = this.dados_cadastro['password'];
+      this.login()
     });
   }  
 }

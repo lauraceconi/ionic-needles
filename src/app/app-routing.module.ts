@@ -5,7 +5,7 @@ const routes: Routes = [
   { path: '', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'feed', loadChildren: './feed/feed.module#FeedPageModule' },
   { path: 'diarios', loadChildren: './diarios/diarios.module#DiariosPageModule' },
-  { path: 'gerenciar-diario', loadChildren: './gerenciar-diario/gerenciar-diario.module#GerenciarDiarioPageModule' }
+  { path: 'detalhes/:id', loadChildren: './diario-detalhe/diario-detalhe.module#DiarioDetalhePageModule' }
 ];
 
 @NgModule({

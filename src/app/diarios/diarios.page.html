@@ -6,15 +6,25 @@
 
 <ion-content padding>
   <ion-grid>
-    <ion-row>
+    <ion-row *ngIf="!diarios?.length">
       <ion-col size-xs="12">
         <h1>Diários de Viagem</h1>
-        <p>Não encontramos nenhum Diário de Viagem para mostrar. Que tal criar um? asdasd</p>
+        <p>Não encontramos nenhum Diário de Viagem para mostrar. Que tal criar um?</p>
       </ion-col>      
     </ion-row>
-    <ion-row (click)="criarNovoDiario()">
+    <ion-row>
+      <ion-col size-md="4" size-xs="12" *ngFor="let diario of diarios">
+        <ion-card class="novo-diario" (click)="acessarDiario(diario.id)"> 
+          <ion-card-header>
+            <ion-icon name="image"></ion-icon>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-card-title>{{ diario.titulo }}</ion-card-title>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
       <ion-col size-md="4" size-xs="12">
-        <ion-card class="novo-diario"> 
+        <ion-card class="novo-diario" (click)="criarNovoDiario()"> 
           <ion-card-header>
             <ion-icon name="add-circle"></ion-icon>
           </ion-card-header>

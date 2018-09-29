@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { App, ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { ModalAlertaComponent } from '../modal-alerta/modal-alerta.component';
 
 @Injectable({
@@ -9,15 +9,18 @@ import { ModalAlertaComponent } from '../modal-alerta/modal-alerta.component';
 export class AlertaService {
 
   constructor(
-    private app: App,
     private modalCtrl: ModalController,
   ) { }
 
-  async mostrarModal(tipoErro : string, redirecionar : boolean = false) {
+  async mostrarModal(tipo: string, icone: string, titulo: string, mensagem: string, redirecionar : boolean = false) {
     const modal = await this.modalCtrl.create({
       component: ModalAlertaComponent,
+      cssClass: 'alert-popup',
       componentProps: { 
-        'tipoErro': tipoErro,
+        'tipo': tipo,
+        'icone': icone,
+        'titulo': titulo,
+        'mensagem': mensagem,
         'redirecionar': redirecionar 
       }
     });

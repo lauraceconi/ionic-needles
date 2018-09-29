@@ -1,6 +1,12 @@
-<p *ngIf="tipoErro == '404'">
-  modal-alerta 404!
-</p>
-<p *ngIf="tipoErro == '403'">
-  modal-alerta 403!
-</p>
+<div class="alert-topo" [ngClass]="tipo">
+  <ion-icon [name]="icone"></ion-icon>
+</div>
+
+<div class="alert-content">
+  <h3>{{ titulo }}</h3>
+  <p>{{ mensagem }}</p>
+</div>
+
+<div class="alert-footer">
+  <ion-button fill="clear" float-right (click)="fecharModal()">Ok</ion-button>
+</div>

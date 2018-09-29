@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Events } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { SETTINGS } from '../../app/settings';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,26 +12,25 @@ export class LoginService {
 
   constructor(private http: HttpClient,
               private storage: Storage,
-              private events: Events) { }
+              private events: Events,
+              private api: ApiService) { }
 
-  public login(username, password) {
+  public login(dados: object) {
     let url = SETTINGS.SERVIDOR + 'api-token-auth/';
-    return this.http.post(
-      url,
-      {'username': username,
-       'password': password}
-    );
+    let formData = new FormData();
+    for (let key in dados) {
+      formData.append(key, dados[key]);
+    }
+    return this.api.post(url, formData);
   }
 
-  public cadastro(firstname, lastname, email, password) {
+  public cadastro(dados: object) {
     let url = SETTINGS.API_URL + 'cadastro/';
-    return this.http.post(
-      url,
-      {'firstname': firstname,
-       'lastname': lastname,
-       'email': email,
-       'password': password}
-    );
+    let formData = new FormData();
+    for (let key in dados) {
+      formData.append(key, dados[key]);
+    }
+    return this.api.post(url, formData);
   }
 
   public getToken() {
