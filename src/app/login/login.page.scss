@@ -34,3 +34,12 @@ h1 {
         padding: 10px;
     }
 }
+
+.logo {
+    width: 40%;
+    margin: 20px auto;
+    display: block;
+    @media (max-width: 700px) {
+        width: 90%;
+    }
+}

@@ -1,9 +1,42 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>diario-detalhe</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ diario?.titulo }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-
+  <ion-grid>
+    <ion-row *ngIf="!diario?.locais_de_interesse.length">
+      <ion-col size-xs="12">
+        <h1>Locais de interesse</h1>
+        <p>Você ainda não adicionou locais interessantes neste Diário. Vamos lá!</p>
+      </ion-col>      
+    </ion-row>
+    <ion-row>
+      <ion-col size-md="4" size-xs="12" *ngFor="let local of diario?.locais_de_interesse">
+        <ion-card class="novo-diario" (click)="acessarLocal(local.id)"> 
+          <ion-card-header>
+            <ion-icon name="image"></ion-icon>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-card-title>{{ local.nome }}</ion-card-title>
+            <p>{{ local.descricao }}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size-md="4" size-xs="12">
+        <ion-card class="novo-diario" (click)="abrirModalLocal()"> 
+          <ion-card-header>
+            <ion-icon name="add-circle"></ion-icon>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-card-title>Adicionar local</ion-card-title>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>    
 </ion-content>

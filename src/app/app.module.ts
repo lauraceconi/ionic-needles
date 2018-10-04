@@ -17,10 +17,19 @@ import { ModalAlertaComponent } from './modal-alerta/modal-alerta.component';
 import { ApiService } from './services/api.service';
 import { DiarioService } from './services/diario.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ModalLocalComponent } from './modal-local/modal-local.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, ModalAlertaComponent],
-  entryComponents: [ModalAlertaComponent],
+  declarations: [
+    AppComponent, 
+    ModalAlertaComponent, 
+    ModalLocalComponent
+  ],
+  entryComponents: [
+    ModalAlertaComponent,
+    ModalLocalComponent
+  ],
   imports: [
     BrowserModule,
     IonicModule.forRoot({
@@ -35,6 +44,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
       enabled: environment.production 
     }),
     HttpClientModule,
+    FormsModule
   ],
   providers: [
     StatusBar,

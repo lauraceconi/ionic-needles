@@ -98,3 +98,32 @@ ion-modal.alert-popup {
         width: 100%;
     }
 }
+
+.novo-diario {
+    transition: .5s;
+    &:hover {
+        opacity: .9;
+        -webkit-box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
+        box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
+        cursor: pointer;
+    }
+    ion-card-header {
+        padding: 20px;
+        text-align: center;
+        background-color: #576574;
+        ion-icon {
+            color:#fff;
+            font-size: 4rem;
+        }
+        &.no-perm {
+            background-color: #ff9f43;
+        }
+        &.not-found {
+            background-color: #ff6b6b;
+        }
+    }
+    ion-card-content {
+        text-align: center;
+    }
+}

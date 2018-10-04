@@ -19,9 +19,18 @@ export class DiarioService {
     return this.api.post(url, formData);
   }
 
-  public getDetalhesDiario(id: string) {
-    let url = SETTINGS.API_URL + 'diarios/' + id +'/';
+  public getDetalhesDiario(diario_id: string) {
+    let url = SETTINGS.API_URL + 'diarios/' + diario_id +'/';
     return this.api.get(url);
+  }
+
+  public adicionarLocal(diario_id: string, dados: object) {
+    let url = SETTINGS.API_URL + 'diarios/' + diario_id +'/cria-local/';
+    let formData = new FormData();
+    for (let key in dados) {
+      formData.append(key, dados[key]);
+    }
+    return this.api.post(url, formData);
   }
   
 }
