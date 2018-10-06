@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DiarioService } from '../services/diario.service';
 
 @Component({
   selector: 'app-local-detalhe',
@@ -8,13 +9,21 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class LocalDetalhePage implements OnInit {
 
-  constructor(public route: ActivatedRoute,) { }
+  constructor(public service: DiarioService,
+              public route: ActivatedRoute,) { }
 
   public local_id: string;
+  public local: object;
 
   ngOnInit() {
     this.local_id = this.route.snapshot.paramMap.get('id');
-    this.getDetalhesDiario();
+    this.getDetalhesLocal();
+  }
+
+  public getDetalhesLocal() {
+    this.service.getDetalhesLocal(this.local_id).then(response => {
+      this.local = response;
+    })
   }
 
 }

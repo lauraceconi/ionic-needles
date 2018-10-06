@@ -12,16 +12,21 @@ export class DiarioService {
     return this.api.get(url);
   }
 
+  public getDetalhesDiario(diario_id: string) {
+    let url = SETTINGS.API_URL + 'diarios/' + diario_id +'/';
+    return this.api.get(url);
+  }
+
+  public getDetalhesLocal(local_id: string) {
+    let url = SETTINGS.API_URL + 'locais/' + local_id +'/';
+    return this.api.get(url);
+  }
+
   public criarDiario(titulo: string) {
     let url = SETTINGS.API_URL + 'diarios/';
     let formData = new FormData();
     formData.append('titulo', titulo);
     return this.api.post(url, formData);
-  }
-
-  public getDetalhesDiario(diario_id: string) {
-    let url = SETTINGS.API_URL + 'diarios/' + diario_id +'/';
-    return this.api.get(url);
   }
 
   public adicionarLocal(diario_id: string, dados: object) {

@@ -28,7 +28,7 @@ export class DiariosPage implements OnInit {
   }
 
   public acessarDiario(id) {
-    this.router.navigate(['/detalhes', id]);
+    this.router.navigate(['/diario', id]);
   }
 
   public criarNovoDiario() {

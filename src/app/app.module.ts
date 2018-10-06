@@ -16,9 +16,9 @@ import { IonicStorageModule } from '@ionic/storage';
 import { ModalAlertaComponent } from './modal-alerta/modal-alerta.component';
 import { ApiService } from './services/api.service';
 import { DiarioService } from './services/diario.service';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ModalLocalComponent } from './modal-local/modal-local.component';
 import { FormsModule } from '@angular/forms';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,10 @@ import { FormsModule } from '@angular/forms';
       enabled: environment.production 
     }),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyC4ODNoDy-1S6wKxnUNUX9ZMoePoDm4GrE'
+    })
   ],
   providers: [
     StatusBar,

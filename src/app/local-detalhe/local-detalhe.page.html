@@ -1,9 +1,15 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>local-detalhe</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ local?.nome }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+  <h1>{{ local?.nome }}</h1>
+  <p>{{ local?.descricao }}</p>
+  <img [src]="local?.foto">
 
 </ion-content>

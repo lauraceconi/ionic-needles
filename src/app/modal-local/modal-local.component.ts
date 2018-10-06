@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { ModalController, Platform, LoadingController } from '@ionic/angular';
 import { DiarioService } from '../services/diario.service';
 
 @Component({
@@ -10,10 +10,13 @@ import { DiarioService } from '../services/diario.service';
 export class ModalLocalComponent implements OnInit {
 
   constructor(public service: DiarioService,
-              public modalCtrl: ModalController) { }
+              public modalCtrl: ModalController,
+              ) { }
 
   @Input('diario_id') diario_id : string;
   public local: any = {};
+  lat: number = 51.678418;
+  lng: number = 7.809007;
 
   ngOnInit() {
   }
@@ -26,6 +29,10 @@ export class ModalLocalComponent implements OnInit {
     this.service.adicionarLocal(this.diario_id, this.local).then(response => {
       this.fecharModal();
     })
+  }
+
+  public uploadArquivo(event) {
+    this.local.foto = event.target.files[0]
   }
 
 }

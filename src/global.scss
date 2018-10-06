@@ -99,7 +99,7 @@ ion-modal.alert-popup {
     }
 }
 
-.novo-diario {
+.card-item {
     transition: .5s;
     &:hover {
         opacity: .9;
@@ -116,14 +116,10 @@ ion-modal.alert-popup {
             color:#fff;
             font-size: 4rem;
         }
-        &.no-perm {
-            background-color: #ff9f43;
+        &.card-foto {
+            background-size: cover;
+            height: 110px;
+            filter: contrast(60%);
         }
-        &.not-found {
-            background-color: #ff6b6b;
-        }
-    }
-    ion-card-content {
-        text-align: center;
-    }
+    }    
 }

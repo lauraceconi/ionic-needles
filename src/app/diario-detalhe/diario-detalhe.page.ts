@@ -31,7 +31,7 @@ export class DiarioDetalhePage implements OnInit {
   }
 
   public acessarLocal(id) {
-    this.router.navigate(['/local-detalhes', id]);
+    this.router.navigate(['/local', id]);
   }
 
   public async abrirModalLocal() {
