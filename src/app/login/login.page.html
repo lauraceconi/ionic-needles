@@ -5,11 +5,11 @@
       <h2>Cadastre-se</h2>
       <ion-item>
         <ion-label position="floating">Nome</ion-label>
-        <ion-input [(ngModel)]="dados_cadastro.firstname"></ion-input>
+        <ion-input [(ngModel)]="dados_cadastro.first_name"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Sobrenome</ion-label>
-        <ion-input [(ngModel)]="dados_cadastro.lastname"></ion-input>
+        <ion-input [(ngModel)]="dados_cadastro.last_name"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">E-mail</ion-label>
@@ -22,8 +22,8 @@
       <ion-button expand="block" 
                   color="primary" 
                   [disabled]="
-                    !dados_cadastro.firstname || 
-                    !dados_cadastro.lastname || 
+                    !dados_cadastro.first_name || 
+                    !dados_cadastro.last_name || 
                     !dados_cadastro.email || 
                     !dados_cadastro.password" 
                   (click)="cadastro()">

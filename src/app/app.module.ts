@@ -18,17 +18,19 @@ import { ApiService } from './services/api.service';
 import { DiarioService } from './services/diario.service';
 import { ModalLocalComponent } from './modal-local/modal-local.component';
 import { FormsModule } from '@angular/forms';
-import { AgmCoreModule } from '@agm/core';
+import { ModalGrupoComponent } from './modal-grupo/modal-grupo.component';
 
 @NgModule({
   declarations: [
     AppComponent, 
     ModalAlertaComponent, 
-    ModalLocalComponent
+    ModalLocalComponent, 
+    ModalGrupoComponent
   ],
   entryComponents: [
     ModalAlertaComponent,
-    ModalLocalComponent
+    ModalLocalComponent,
+    ModalGrupoComponent
   ],
   imports: [
     BrowserModule,
@@ -45,9 +47,6 @@ import { AgmCoreModule } from '@agm/core';
     }),
     HttpClientModule,
     FormsModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyC4ODNoDy-1S6wKxnUNUX9ZMoePoDm4GrE'
-    })
   ],
   providers: [
     StatusBar,

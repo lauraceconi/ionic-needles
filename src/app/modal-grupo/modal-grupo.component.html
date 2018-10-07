@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Criar Grupo</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="fecharModal()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-item>
+      <ion-label position="floating">Nome do Grupo</ion-label>
+      <ion-input [(ngModel)]="grupo.name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Buscar usuários</ion-label>
+      <ion-input [(ngModel)]="filterUsuarios" (ionInput)="filtraUsuarios($event)"></ion-input>
+    </ion-item>
+    <div *ngIf="!filtroNaoEncontrado">
+      <ion-item *ngFor="let usuario of listaUsuariosFiltrados">
+        {{ usuario.full_name }}
+        <ion-button slot="end" fill="clear" size="large" (click)="addMembro(usuario.id)">
+          <ion-icon name="add-circle" slot="end"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </div>
+    <p *ngIf="mensagemFiltro">
+      {{ mensagemFiltro }}
+    </p>
+    
+    <ion-button expand="block" 
+                color="primary" 
+                [disabled]="!grupo.name" 
+                (click)="criarGrupo()">
+      Criar
+    </ion-button>
+
+</ion-content>

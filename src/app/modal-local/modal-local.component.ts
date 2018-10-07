@@ -28,7 +28,7 @@ export class ModalLocalComponent implements OnInit {
   public adicionarLocal() {
     this.service.adicionarLocal(this.diario_id, this.local).then(response => {
       this.fecharModal();
-    })
+    });
   }
 
   public uploadArquivo(event) {

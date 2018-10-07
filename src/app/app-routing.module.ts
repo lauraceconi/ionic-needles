@@ -6,7 +6,8 @@ const routes: Routes = [
   { path: 'feed', loadChildren: './feed/feed.module#FeedPageModule' },
   { path: 'diarios', loadChildren: './diarios/diarios.module#DiariosPageModule' },
   { path: 'diario/:id', loadChildren: './diario-detalhe/diario-detalhe.module#DiarioDetalhePageModule' },
-  { path: 'local/:id', loadChildren: './local-detalhe/local-detalhe.module#LocalDetalhePageModule' }
+  { path: 'local/:id', loadChildren: './local-detalhe/local-detalhe.module#LocalDetalhePageModule' },
+  { path: 'grupos', loadChildren: './grupos/grupos.module#GruposPageModule' }
 ];
 
 @NgModule({

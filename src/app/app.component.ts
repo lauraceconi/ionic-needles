@@ -30,7 +30,7 @@ export class AppComponent {
     },
     {
       title: 'Grupos',
-      url: '/diarios-de-viagem',
+      url: '/grupos',
       icon: 'people'
     }
   ];
