@@ -12,7 +12,40 @@
 
 :root {
     --ion-text-color: #444;
-    --ion-item-background-color: #fff;
+    --ion-item-background-color: #fff;    
+}
+
+#menu ion-header {
+    background: linear-gradient(to bottom, rgba(255,50,54,1),rgba(41,137,216,0.77)); 
+    cursor: pointer;
+    img {
+        max-width: 30%;
+        border: 0;
+        display: block;
+        margin: 30px auto;
+    }
+    &:focus {
+        outline: none;
+    }
+}
+
+ion-item.item-input {
+    --padding-start: 5px!important;
+}
+
+h2 {
+    font-weight: 600;
+    margin-bottom: 30px;
+    font-size: calc(var(--ion-header-size, 20px) - var(--ion-header-step, 2px));
+    color: #fff;
+    text-align: center;
+}
+
+h3 {
+    text-transform: uppercase;
+    font-size: calc(var(--ion-header-size, 22px) - var(--ion-header-step, 2px) * 2);
+    font-weight: 900;
+    margin: 0;
 }
 
 ion-router-outlet ion-content {

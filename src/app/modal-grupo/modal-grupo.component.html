@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content padding>
-
+  <ion-list>
     <ion-item>
       <ion-label position="floating">Nome do Grupo</ion-label>
       <ion-input [(ngModel)]="grupo.name"></ion-input>
@@ -22,7 +22,7 @@
     <div *ngIf="!filtroNaoEncontrado">
       <ion-item *ngFor="let usuario of listaUsuariosFiltrados">
         {{ usuario.full_name }}
-        <ion-button slot="end" fill="clear" size="large" (click)="addMembro(usuario.id)">
+        <ion-button slot="end" fill="clear" size="large" (click)="addMembro(usuario)">
           <ion-icon name="add-circle" slot="end"></ion-icon>
         </ion-button>
       </ion-item>
@@ -30,6 +30,17 @@
     <p *ngIf="mensagemFiltro">
       {{ mensagemFiltro }}
     </p>
+    <div *ngIf="membros.length">
+      <hr>
+      Membros adicionados
+      <ion-item *ngFor="let usuario of membros">
+        {{ usuario.full_name }}
+        <ion-button slot="end" fill="clear" size="large" (click)="removeMembro(usuario)" color="danger">
+          <ion-icon name="close-circle" slot="end"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </div>
+  </ion-list>
     
     <ion-button expand="block" 
                 color="primary" 

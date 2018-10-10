@@ -16,7 +16,12 @@ export class AppComponent {
     {
       title: 'Feed',
       url: '/feed',
-      icon: 'home'
+      icon: 'book'
+    },
+    {
+      title: 'Perfil',
+      url: '/perfil',
+      icon: 'person'
     },
     {
       title: 'Diários de Viagem',
@@ -50,5 +55,15 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  public logout() {
+    this.storage.clear().then(() => {
+      this.router.navigateByUrl('');
+    })
+  }
+
+  public isActive(url) {
+    return window.location.href.indexOf(url) > 0;
   }
 }

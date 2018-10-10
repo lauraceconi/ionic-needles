@@ -43,7 +43,7 @@ export class ApiService {
             'remove-circle-outline',
             'Permissão negada',
             'Você não tem permissão para realizar esta ação.',
-            false
+            true
           );
           break;
         }

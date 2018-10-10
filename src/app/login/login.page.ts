@@ -40,7 +40,8 @@ export class LoginPage implements OnInit {
     this.abaAtiva = 'cadastro';
   }
 
-  public trocarAba(aba) {
+  public trocarAba(event, aba) {
+    event.preventDefault();
     this.abaAtiva = aba;
   }
 

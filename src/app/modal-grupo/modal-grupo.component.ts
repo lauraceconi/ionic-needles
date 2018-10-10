@@ -12,7 +12,7 @@ export class ModalGrupoComponent implements OnInit {
   constructor(public modalCtrl: ModalController,
               public service: GrupoService) { }
 
-  public grupo: object = {};
+  public grupo: object = { 'membros': [] };
   public membros: any = [];
   public listaUsuarios: any = [];
   public listaUsuariosFiltrados: any = [];
@@ -51,17 +51,25 @@ export class ModalGrupoComponent implements OnInit {
     }
   }
 
-  public addMembro(id_membro: number) {
-    this.membros.push(id_membro);
+  public addMembro(usuario: any) {
+    var index1 = this.listaUsuarios.indexOf(usuario);
+    var index2 = this.listaUsuariosFiltrados.indexOf(usuario);
+    if (index1 > -1) this.listaUsuarios.splice(index1, 1);
+    if (index2 > -1) this.listaUsuariosFiltrados.splice(index2, 1);
+    this.membros.push(usuario);
   }
 
-  public removeMembro(id_membro: number) {
-    var index = this.membros.indexOf(id_membro);
+  public removeMembro(usuario: any) {
+    var index = this.membros.indexOf(usuario);
     if (index > -1) this.membros.splice(index, 1);
+    this.listaUsuarios.push(usuario);
   }
 
   public criarGrupo() {
-    this.grupo['membros'] = this.membros;
+    for (let i=0;i<this.membros.length;i++) {
+      (this.grupo['membros']).push(this.membros[i].id);
+    }
+    //this.grupo['membros'] = this.membros;
     this.service.criarGrupo(this.grupo).then(response => {
       this.fecharModal();
     });
