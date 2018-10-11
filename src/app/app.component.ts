@@ -6,12 +6,25 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
 import { SETTINGS } from './settings';
+import { LoginService } from './services/login.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
+
+  constructor(
+    private platform: Platform,
+    private splashScreen: SplashScreen,
+    private statusBar: StatusBar,
+    private storage: Storage,
+    private router: Router,
+    private service: LoginService
+  ) {
+    this.initializeApp();
+  }
+
   public appPages = [
     {
       title: 'Feed',
@@ -40,27 +53,30 @@ export class AppComponent {
     }
   ];
 
-  constructor(
-    private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
-    private storage: Storage,
-    private router: Router
-  ) {
-    this.initializeApp();
-  }
+  public dados: object = {};
 
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      this.storage.get('dadosUsuario').then(dados => {
+        if (dados) {
+          this.dados = dados;
+        } else {
+          this.service.getDadosUsuario().then(response => {
+            this.storage.set('dadosUsuario', JSON.stringify(response));
+            this.dados = response;
+          });
+        }
+      });
     });
   }
 
   public logout() {
     this.storage.clear().then(() => {
       this.router.navigateByUrl('');
-    })
+    });
   }
 
   public isActive(url) {

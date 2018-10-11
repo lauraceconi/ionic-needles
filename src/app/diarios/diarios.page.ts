@@ -12,19 +12,19 @@ import { DiarioService } from '../services/diario.service';
 export class DiariosPage implements OnInit {
 
   constructor(public service: DiarioService,
-              public alertController: AlertController, 
+              public alertController: AlertController,
               public router: Router) { }
 
   public diarios: any;
 
   ngOnInit() {
-    this.carregarDiarios()
+    this.carregarDiarios();
   }
 
   public carregarDiarios() {
     this.service.getDiarios().then(response  => {
       this.diarios = response;
-    });  
+    });
   }
 
   public acessarDiario(id) {
@@ -32,7 +32,6 @@ export class DiariosPage implements OnInit {
   }
 
   public criarNovoDiario() {
-    //this.router.navigateByUrl('/gerenciar-diario');
     this.presentAlertPrompt();
   }
 
@@ -51,14 +50,13 @@ export class DiariosPage implements OnInit {
           text: 'Fechar',
           role: 'cancel',
           cssClass: 'secondary'
-        }, 
+        },
         {
           text: 'Criar',
           handler: data => {
             this.service.criarDiario(data.titulo).then(response  => {
-              debugger
-              this.router.navigateByUrl('/diario');
-            });    
+              this.router.navigate(['/diario', response['id']);
+            });
           }
         }
       ]

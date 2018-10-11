@@ -33,11 +33,16 @@ export class LoginService {
     return this.api.post(url, formData);
   }
 
+  public getDadosUsuario() {
+    let url = SETTINGS.API_URL + 'dados-usuario/';
+    return this.api.get(url);
+  }
+
   public getToken() {
     return this.storage.get('token');
   }
 
-  public sendLogoutEvent() : void {
+  public sendLogoutEvent(): void {
     this.storage.clear().then(
       data => {
         this.events.publish('logout');
