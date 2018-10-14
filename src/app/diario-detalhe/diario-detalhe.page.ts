@@ -11,10 +11,12 @@ import { ModalLocalComponent } from '../modal-local/modal-local.component';
 })
 export class DiarioDetalhePage implements OnInit {
 
-  constructor(public service: DiarioService,
-              public route: ActivatedRoute,
-              private modalCtrl: ModalController,
-              public router: Router) { }
+  constructor(
+    public service: DiarioService,
+    public route: ActivatedRoute,
+    private modalCtrl: ModalController,
+    public router: Router
+  ) { }
 
   public diario_id: string;
   public diario: object;
@@ -27,7 +29,7 @@ export class DiarioDetalhePage implements OnInit {
   public getDetalhesDiario() {
     this.service.getDetalhesDiario(this.diario_id).then(response => {
       this.diario = response;
-    })
+    });
   }
 
   public acessarLocal(id) {
@@ -42,7 +44,7 @@ export class DiarioDetalhePage implements OnInit {
     modal.onDidDismiss().then(() => {
       this.getDetalhesDiario();
     });
-    return await modal.present();    
+    return await modal.present();
   }
 
 

@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="topo-perfil"></div>
+
+  <div class="foto-perfil">
+    <img src="https://image.flaticon.com/icons/svg/145/145843.svg">
+  </div>
+
+  <h3 class="text-center">{{ dados.full_name }}</h3>
+  <h4>{{ dados.username }}</h4>
+
+  <hr>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col class="text-center">
+        {{ dados.seguindo }}
+        <br/>Seguindo
+      </ion-col>
+      <ion-col class="text-center">
+        {{ dados.seguidores }}
+        <br/>Seguidores
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="!perfilUsuario">
+      <ion-col>
+        <ion-button expand="block" (click)="setClassificacao()">
+          <ion-icon name="person-add" slot="start"></ion-icon>
+          Seguir
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

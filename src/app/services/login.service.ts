@@ -33,8 +33,18 @@ export class LoginService {
     return this.api.post(url, formData);
   }
 
-  public getDadosUsuario() {
+  public getDadosUsuarioLogado() {
     let url = SETTINGS.API_URL + 'dados-usuario/';
+    return this.api.get(url);
+  }
+
+  public getDadosUsuario(id: string) {
+    let url = SETTINGS.API_URL + 'dados-usuario/' + id +'/';
+    return this.api.get(url);
+  }
+
+  public getUsuarios() {
+    let url = SETTINGS.API_URL + 'usuarios/';
     return this.api.get(url);
   }
 

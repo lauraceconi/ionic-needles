@@ -17,7 +17,7 @@ export class LoginPage implements OnInit {
   public dados_cadastro : object = {}
   public abaAtiva: string;
 
-  constructor(public menuCtrl: MenuController, 
+  constructor(public menuCtrl: MenuController,
               public service: LoginService,
               public storage: Storage,
               public router: Router,
@@ -30,11 +30,14 @@ export class LoginPage implements OnInit {
 
   ionViewWillEnter() {
     this.storage.get('token').then(token => {
-      if (token) this.router.navigateByUrl('/feed');
+      if (token) {
+        this.router.navigateByUrl('/feed');
+        this.events.publish('loginEfetuado');
+      }
     });
   }
 
-  ngOnInit() {    
+  ngOnInit() {
     this.menuCtrl.enable(false);
     document.getElementById('menu').style.display = 'none';
     this.abaAtiva = 'cadastro';

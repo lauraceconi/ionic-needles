@@ -7,7 +7,9 @@ const routes: Routes = [
   { path: 'diarios', loadChildren: './diarios/diarios.module#DiariosPageModule' },
   { path: 'diario/:id', loadChildren: './diario-detalhe/diario-detalhe.module#DiarioDetalhePageModule' },
   { path: 'local/:id', loadChildren: './local-detalhe/local-detalhe.module#LocalDetalhePageModule' },
-  { path: 'grupos', loadChildren: './grupos/grupos.module#GruposPageModule' }
+  { path: 'grupos', loadChildren: './grupos/grupos.module#GruposPageModule' },
+  { path: 'perfil', loadChildren: './perfil/perfil.module#PerfilPageModule' },
+  { path: 'perfil/:id', loadChildren: './perfil/perfil.module#PerfilPageModule' },
 ];
 
 @NgModule({

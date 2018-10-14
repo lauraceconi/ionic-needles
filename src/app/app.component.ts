@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform, Events } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Storage } from '@ionic/storage';
@@ -20,7 +20,8 @@ export class AppComponent {
     private statusBar: StatusBar,
     private storage: Storage,
     private router: Router,
-    private service: LoginService
+    private service: LoginService,
+    private events: Events
   ) {
     this.initializeApp();
   }
@@ -60,17 +61,20 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      this.storage.get('dadosUsuario').then(dados => {
-        if (dados) {
-          this.dados = dados;
-        } else {
-          this.service.getDadosUsuario().then(response => {
-            this.storage.set('dadosUsuario', JSON.stringify(response));
-            this.dados = response;
-          });
-        }
+      this.events.subscribe('loginEfetuado', () => {
+        this.storage.get('dadosUsuario').then(dados => {
+          if (dados) {
+            this.dados = JSON.parse(dados);
+          } else {
+            this.service.getDadosUsuarioLogado().then(response => {
+              this.storage.set('dadosUsuario', JSON.stringify(response));
+              this.dados = response;
+            });
+          }
+        });
       });
     });
+
   }
 
   public logout() {

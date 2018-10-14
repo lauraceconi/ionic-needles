@@ -14,11 +14,6 @@ export class GrupoService {
     return this.api.get(url);
   }
 
-  public getUsuarios() {
-    let url = SETTINGS.API_URL + 'usuarios/';
-    return this.api.get(url);
-  }
-
   public criarGrupo(dados: object) {
     let url = SETTINGS.API_URL + 'grupos/';
     let formData = new FormData();

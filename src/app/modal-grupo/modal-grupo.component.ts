@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { GrupoService } from '../services/grupo.service';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-modal-grupo',
@@ -9,25 +10,29 @@ import { GrupoService } from '../services/grupo.service';
 })
 export class ModalGrupoComponent implements OnInit {
 
-  constructor(public modalCtrl: ModalController,
-              public service: GrupoService) { }
+  constructor(
+    public modalCtrl: ModalController,
+    public grupoService: GrupoService,
+    public loginService: LoginService
+  ) { }
 
   public grupo: object = { 'membros': [] };
   public membros: any = [];
   public listaUsuarios: any = [];
   public listaUsuariosFiltrados: any = [];
-  public mensagemFiltro: string = '';  
+  public mensagemFiltro: string;
 
   ngOnInit() {
+    this.mensagemFiltro = '';
     this.getListaUsuarios();
   }
 
   public fecharModal() {
     this.modalCtrl.dismiss();
-  } 
+  }
 
   public getListaUsuarios() {
-    this.service.getUsuarios().then(response => {
+    this.loginService.getUsuarios().then(response => {
       this.listaUsuarios = response;
     });
   }
@@ -70,7 +75,7 @@ export class ModalGrupoComponent implements OnInit {
       (this.grupo['membros']).push(this.membros[i].id);
     }
     //this.grupo['membros'] = this.membros;
-    this.service.criarGrupo(this.grupo).then(response => {
+    this.grupoService.criarGrupo(this.grupo).then(response => {
       this.fecharModal();
     });
   }

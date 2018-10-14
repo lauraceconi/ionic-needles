@@ -11,9 +11,11 @@ import { DiarioService } from '../services/diario.service';
 })
 export class DiariosPage implements OnInit {
 
-  constructor(public service: DiarioService,
-              public alertController: AlertController,
-              public router: Router) { }
+  constructor(
+    public service: DiarioService,
+    public alertController: AlertController,
+    public router: Router
+  ) { }
 
   public diarios: any;
 
@@ -31,11 +33,7 @@ export class DiariosPage implements OnInit {
     this.router.navigate(['/diario', id]);
   }
 
-  public criarNovoDiario() {
-    this.presentAlertPrompt();
-  }
-
-  async presentAlertPrompt() {
+  async criarNovoDiario() {
     const alert = await this.alertController.create({
       header: 'Novo Diário',
       inputs: [
@@ -55,7 +53,7 @@ export class DiariosPage implements OnInit {
           text: 'Criar',
           handler: data => {
             this.service.criarDiario(data.titulo).then(response  => {
-              this.router.navigate(['/diario', response['id']);
+              this.router.navigate(['/diario', response['id']]);
             });
           }
         }

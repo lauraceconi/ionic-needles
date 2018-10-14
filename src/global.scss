@@ -29,6 +29,10 @@
     }
 }
 
+button.button-native {
+    padding: 0!important;
+}
+
 .icone-pagina {
     display: block;
     margin: 0 auto;
@@ -55,6 +59,12 @@ h3 {
     font-size: calc(var(--ion-header-size, 22px) - var(--ion-header-step, 2px) * 2);
     font-weight: 900;
     margin: 0;
+}
+
+h4 {
+    text-align: center;
+    font-size: 15px;
+    margin-top: 5px;
 }
 
 ion-router-outlet ion-content {
