@@ -22,7 +22,7 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col class="text-center">
+      <ion-col class="text-center" >
         {{ dados.seguindo }}
         <br/>Seguindo
       </ion-col>
@@ -32,11 +32,21 @@
       </ion-col>
     </ion-row>
     <ion-row *ngIf="!perfilUsuario">
-      <ion-col>
+      <ion-col size="12" *ngIf="!dados.sigo">
         <ion-button expand="block" (click)="setClassificacao()">
           <ion-icon name="person-add" slot="start"></ion-icon>
           Seguir
         </ion-button>
+      </ion-col>
+      <ion-col size="12" *ngIf="dados.sigo">
+        <ion-button expand="block" (click)="setClassificacao()" color="secondary">
+          <ion-icon name="contacts" slot="start"></ion-icon>
+          <!-- TODO: DEIXAR DE SEGUIR E MODIFICAR RELAÇÃO -->
+          Seguindo
+        </ion-button>
+      </ion-col>
+      <ion-col size="12" *ngIf="dados.me_segue">
+        {{ dados.full_name }} segue você
       </ion-col>
     </ion-row>
   </ion-grid>

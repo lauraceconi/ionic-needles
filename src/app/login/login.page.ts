@@ -3,8 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { MenuController, Events } from '@ionic/angular';
 import { LoginService } from '../services/login.service';
 import { Storage } from '@ionic/storage';
-import { SETTINGS } from '../settings';
-
 
 @Component({
   selector: 'app-login',
@@ -14,7 +12,7 @@ import { SETTINGS } from '../settings';
 export class LoginPage implements OnInit {
 
   public dados_login: object = {};
-  public dados_cadastro : object = {}
+  public dados_cadastro: object = {};
   public abaAtiva: string;
 
   constructor(public menuCtrl: MenuController,
@@ -49,7 +47,7 @@ export class LoginPage implements OnInit {
   }
 
   public login() {
-    let dados = {}
+    let dados = {};
     for (let key in this.dados_login) {
       dados[key] = this.dados_login[key];
     }
@@ -61,14 +59,14 @@ export class LoginPage implements OnInit {
   }
 
   public cadastro() {
-    let dados = {}
+    let dados = {};
     for (let key in this.dados_cadastro) {
       dados[key] = this.dados_cadastro[key];
     }
     this.service.cadastro(dados).then(() => {
       this.dados_login['username'] = this.dados_cadastro['email'];
       this.dados_login['password'] = this.dados_cadastro['password'];
-      this.login()
+      this.login();
     });
-  }  
+  }
 }

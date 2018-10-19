@@ -19,7 +19,7 @@ export class DiarioDetalhePage implements OnInit {
   ) { }
 
   public diario_id: string;
-  public diario: object;
+  public diario: any;
 
   ngOnInit() {
     this.diario_id = this.route.snapshot.paramMap.get('id');

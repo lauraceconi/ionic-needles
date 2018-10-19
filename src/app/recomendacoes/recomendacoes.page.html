@@ -3,31 +3,31 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Diários de Viagem</ion-title>
+    <ion-title>Recomendações</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="criarNovoDiario()">
+    <ion-fab-button (click)="criarNovaRecomendacao()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
   <ion-grid>
-    <ion-row *ngIf="!diarios.length">
+    <ion-row *ngIf="!recomendacoes.length">
       <ion-col size-xs="12">
-          <img src="../../assets/images/startup.png" class="icone-pagina">
-          <p class="text-center">Não encontramos nenhum Diário de Viagem para mostrar. Que tal criar um?</p>
+          <img src="../../assets/images/coordination.png" class="icone-pagina">
+          <p class="text-center">Você ainda não solicitou nenhuma recomendação. Crie uma e aguarde o recebimento de locais interessantes!</p>
       </ion-col>      
     </ion-row>
     <ion-row>
-      <ion-col size-md="4" size-xs="12" *ngFor="let diario of diarios">
-        <ion-card class="card-item" (click)="acessarDiario(diario.id)"> 
+      <ion-col size-md="4" size-xs="12" *ngFor="let recomendacao of recomendacoes">
+        <ion-card class="card-item" (click)="acessarRecomendacao(recomendacao.id)"> 
           <ion-card-header>
             <ion-icon name="image"></ion-icon>
           </ion-card-header>
           <ion-card-content>
-            <ion-card-title>{{ diario.titulo }}</ion-card-title>
+            <p>{{ recomendacao.descricao }}</p>
           </ion-card-content>
         </ion-card>
       </ion-col>

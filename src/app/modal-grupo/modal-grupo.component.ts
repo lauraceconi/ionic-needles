@@ -16,7 +16,7 @@ export class ModalGrupoComponent implements OnInit {
     public loginService: LoginService
   ) { }
 
-  public grupo: object = { 'membros': [] };
+  public grupo: any = { 'membros': [] };
   public membros: any = [];
   public listaUsuarios: any = [];
   public listaUsuariosFiltrados: any = [];

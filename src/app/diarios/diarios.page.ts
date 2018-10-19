@@ -30,7 +30,7 @@ export class DiariosPage implements OnInit {
   }
 
   public acessarDiario(id) {
-    this.router.navigate(['/diario', id]);
+    this.router.navigate(['/diarios', id]);
   }
 
   async criarNovoDiario() {
@@ -53,7 +53,7 @@ export class DiariosPage implements OnInit {
           text: 'Criar',
           handler: data => {
             this.service.criarDiario(data.titulo).then(response  => {
-              this.router.navigate(['/diario', response['id']]);
+              this.router.navigate(['/diarios', response['id']]);
             });
           }
         }
@@ -61,5 +61,4 @@ export class DiariosPage implements OnInit {
     });
     await alert.present();
   }
-
 }

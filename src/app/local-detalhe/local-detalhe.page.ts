@@ -9,11 +9,13 @@ import { DiarioService } from '../services/diario.service';
 })
 export class LocalDetalhePage implements OnInit {
 
-  constructor(public service: DiarioService,
-              public route: ActivatedRoute,) { }
+  constructor(
+    public service: DiarioService,
+    public route: ActivatedRoute,
+  ) { }
 
   public local_id: string;
-  public local: object;
+  public local: any;
 
   ngOnInit() {
     this.local_id = this.route.snapshot.paramMap.get('id');

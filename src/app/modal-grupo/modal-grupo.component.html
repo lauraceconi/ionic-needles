@@ -17,16 +17,14 @@
     </ion-item>
     <ion-item>
       <ion-label position="floating">Buscar usuários</ion-label>
-      <ion-input [(ngModel)]="filterUsuarios" (ionInput)="filtraUsuarios($event)"></ion-input>
+      <ion-input (ionInput)="filtraUsuarios($event)"></ion-input>
     </ion-item>
-    <div *ngIf="!filtroNaoEncontrado">
-      <ion-item *ngFor="let usuario of listaUsuariosFiltrados">
-        {{ usuario.full_name }}
-        <ion-button slot="end" fill="clear" size="large" (click)="addMembro(usuario)">
-          <ion-icon name="add-circle" slot="end"></ion-icon>
-        </ion-button>
-      </ion-item>
-    </div>
+    <ion-item *ngFor="let usuario of listaUsuariosFiltrados">
+      {{ usuario.full_name }}
+      <ion-button slot="end" fill="clear" size="large" (click)="addMembro(usuario)">
+        <ion-icon name="add-circle" slot="end"></ion-icon>
+      </ion-button>
+    </ion-item>
     <p *ngIf="mensagemFiltro">
       {{ mensagemFiltro }}
     </p>

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { MenuController, Searchbar } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { LoginService } from '../services/login.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-feed',
@@ -18,6 +18,7 @@ export class FeedPage implements OnInit {
     public router: Router
   ) { }
 
+  @ViewChild('searchBar') searchbar: Searchbar;
   public dados: object = {};
   public mostrarBarraPesquisa: boolean;
   public listaUsuarios: any = [];
@@ -34,7 +35,7 @@ export class FeedPage implements OnInit {
       if (dados) {
         this.dados = dados;
       } else {
-        this.service.getDadosUsuario().then(response => {
+        this.service.getDadosUsuarioLogado().then(response => {
           this.storage.set('dadosUsuario', JSON.stringify(response));
           this.dados = response;
         });
@@ -72,7 +73,15 @@ export class FeedPage implements OnInit {
   }
 
   public acessarPerfil(id) {
+    this.limpaTudo();
     this.router.navigate(['/perfil', id]);
+  }
+
+  public limpaTudo() {
+    this.toggleBarraPesquisa();
+    this.searchbar.value = '';
+    this.listaUsuariosFiltrados = [];
+    this.mensagemFiltro = '';
   }
 
 }

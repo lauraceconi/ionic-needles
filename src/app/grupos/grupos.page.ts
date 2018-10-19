@@ -13,7 +13,7 @@ export class GruposPage implements OnInit {
   constructor(public service: GrupoService,
               private modalCtrl: ModalController,) { }
 
-  public grupos: object;
+  public grupos: any;
 
   ngOnInit() {
     this.getGrupos();
@@ -32,7 +32,7 @@ export class GruposPage implements OnInit {
     modal.onDidDismiss().then(() => {
       this.getGrupos();
     });
-    return await modal.present();    
+    return await modal.present();
   }
 
 }
