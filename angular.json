@@ -60,6 +60,9 @@
               "vendorChunk": false,
               "buildOptimizer": true,
               "serviceWorker": true
+            },
+            "development": {
+              "serviceWorker": true
             }
           }
         },

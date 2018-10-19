@@ -45,8 +45,15 @@ export class PerfilPage implements OnInit {
   }
 
   public getDadosUsuario(usuario_id: string) {
-    this.loginService.getDadosUsuario(usuario_id).then(dados => {
-      this.dados = dados;
+    this.storage.get('dadosUsuario').then(response => {
+      this.dados = JSON.parse(response);
+      if (!((this.dados.id).toString() === usuario_id)) {
+        this.loginService.getDadosUsuario(usuario_id).then(dados => {
+          this.dados = dados;
+        });
+      } else {
+        this.perfilUsuario = true;
+      }
     });
   }
 
