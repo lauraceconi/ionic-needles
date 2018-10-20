@@ -53,14 +53,50 @@ export class AppComponent {
     }
   ];
 
-  public dados: object = {};
+  public dados: any = {};
+  public player_id: string;
+  public OneSignal = window['OneSignal'] || [];
 
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
+      const OneSignal = window['OneSignal'] || [];
+      const _this = this;
+      console.log('Init OneSignal');
+      OneSignal.push(['init', {
+        appId: '9929500d-6547-454b-92eb-39bdbb05fa82',
+        autoRegister: false,
+        allowLocalhostAsSecureOrigin: true,
+        notifyButton: {
+          enable: false
+        },
+        promptOptions: {
+          actionMessage: 'Você gostaria de receber notificações de Wanderlust?',
+          acceptButtonText: 'Sim!',
+          cancelButtonText: 'Agora não'
+        }
+      }]);
+      console.log('OneSignal Initialized');
+      /*OneSignal.push(function () {
+        console.log('Register For Push');
+        OneSignal.push(['registerForPushNotifications']);
+      });*/
+      OneSignal.push(function () {
+        // Occurs when the user's subscription changes to a new value.
+        OneSignal.on('subscriptionChange', function (isSubscribed) {
+          console.log('The user subscription state is now:', isSubscribed);
+          OneSignal.getUserId().then(function (userId) {
+            _this.service.cadastraNotificacao(userId);
+          });
+        });
+      });
+
       this.events.subscribe('loginEfetuado', () => {
+        OneSignal.push(function() {
+          OneSignal.showHttpPrompt();
+        });
         this.storage.get('dadosUsuario').then(dados => {
           if (dados) {
             this.dados = JSON.parse(dados);
@@ -73,7 +109,6 @@ export class AppComponent {
         });
       });
     });
-
   }
 
   public logout() {

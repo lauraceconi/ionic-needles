@@ -9,7 +9,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "buildwww": "rm -rf www/; ionic build --prod; cp OneSignalSDKUpdaterWorker.js www/; cp OneSignalSDKWorker.js www/"
   },
   "private": true,
   "dependencies": {

@@ -54,6 +54,7 @@ export class LoginPage implements OnInit {
     this.service.login(dados).then(
       response => {
         this.storage.set('token', response['token']);
+        this.events.publish('loginEfetuado');
         this.router.navigateByUrl('/feed');
     });
   }

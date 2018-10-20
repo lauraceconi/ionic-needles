@@ -16,40 +16,47 @@ export class LoginService {
               private api: ApiService) { }
 
   public login(dados: object) {
-    let url = SETTINGS.SERVIDOR + 'api-token-auth/';
-    let formData = new FormData();
-    for (let key in dados) {
+    const url = SETTINGS.SERVIDOR + 'api-token-auth/';
+    const formData = new FormData();
+    for (const key in dados) {
       formData.append(key, dados[key]);
     }
     return this.api.post(url, formData);
   }
 
   public cadastro(dados: object) {
-    let url = SETTINGS.API_URL + 'cadastro/';
-    let formData = new FormData();
-    for (let key in dados) {
+    const url = SETTINGS.API_URL + 'cadastro/';
+    const formData = new FormData();
+    for (const key in dados) {
       formData.append(key, dados[key]);
     }
     return this.api.post(url, formData);
   }
 
   public getDadosUsuarioLogado() {
-    let url = SETTINGS.API_URL + 'dados-usuario/';
+    const url = SETTINGS.API_URL + 'dados-usuario/';
     return this.api.get(url);
   }
 
   public getDadosUsuario(id: string) {
-    let url = SETTINGS.API_URL + 'dados-usuario/' + id +'/';
+    const url = SETTINGS.API_URL + 'dados-usuario/' + id + '/';
     return this.api.get(url);
   }
 
   public getUsuarios() {
-    let url = SETTINGS.API_URL + 'usuarios/';
+    const url = SETTINGS.API_URL + 'usuarios/';
     return this.api.get(url);
   }
 
   public getToken() {
     return this.storage.get('token');
+  }
+
+  public cadastraNotificacao(userId) {
+    const url = SETTINGS.API_URL + 'notificacoes/';
+    const formData = new FormData();
+    formData.append('user_id', userId);
+    return this.api.post(url, formData);
   }
 
   public sendLogoutEvent(): void {
