@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'perfil', loadChildren: './perfil/perfil.module#PerfilPageModule' },
   { path: 'perfil/:id', loadChildren: './perfil/perfil.module#PerfilPageModule' },
   { path: 'recomendacoes', loadChildren: './recomendacoes/recomendacoes.module#RecomendacoesPageModule' },
-  { path: 'recomendacao-detalhe', loadChildren: './recomendacao-detalhe/recomendacao-detalhe.module#RecomendacaoDetalhePageModule' },
+  { path: 'recomendacoes/:id', loadChildren: './recomendacao-detalhe/recomendacao-detalhe.module#RecomendacaoDetalhePageModule' },
 ];
 
 @NgModule({

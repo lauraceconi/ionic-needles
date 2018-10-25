@@ -25,7 +25,7 @@ export class LocalDetalhePage implements OnInit {
   public getDetalhesLocal() {
     this.service.getDetalhesLocal(this.local_id).then(response => {
       this.local = response;
-    })
+    });
   }
 
 }

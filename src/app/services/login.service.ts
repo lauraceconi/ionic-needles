@@ -39,7 +39,7 @@ export class LoginService {
   }
 
   public getDadosUsuario(id: string) {
-    const url = SETTINGS.API_URL + 'dados-usuario/' + id + '/';
+    const url = SETTINGS.API_URL + 'perfil/' + id + '/';
     return this.api.get(url);
   }
 

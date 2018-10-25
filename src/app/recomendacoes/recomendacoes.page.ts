@@ -34,12 +34,12 @@ export class RecomendacoesPage implements OnInit {
 
   async criarNovaRecomendacao() {
     const alert = await this.alertController.create({
-      header: 'Novo Diário',
+      header: 'Nova solicitação de recomendação',
       inputs: [
         {
-          name: 'titulo',
+          name: 'descricao',
           type: 'text',
-          placeholder: 'Dê um título ao seu Diário'
+          placeholder: 'Descreva sua solicitação'
         }
       ],
       buttons: [
@@ -51,8 +51,8 @@ export class RecomendacoesPage implements OnInit {
         {
           text: 'Criar',
           handler: data => {
-            this.service.criarRecomendacao(data.titulo).then(response  => {
-              this.router.navigate(['/diario', response['id']]);
+            this.service.criarRecomendacao(data.descricao).then(response  => {
+              this.router.navigate(['/recomendacoes', response['id']]);
             });
           }
         }
