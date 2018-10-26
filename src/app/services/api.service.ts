@@ -23,7 +23,7 @@ export class ApiService {
     * @param {string} url - Qual a URL que foi chamada para gerar o erro.
     * @param {HttpErrorResponse} erro - Qual o erro de retorno do servidor
     */
-    private catchError(metodo : string, url : string, erro : HttpErrorResponse) : void {
+    private catchError(metodo: string, url: string, erro: HttpErrorResponse): void {
       switch (erro.status) {
         case 401: {
           // Não autenticado
@@ -56,7 +56,7 @@ export class ApiService {
             'A página que você está tentando acessar não existe.',
             true
           );
-          break;        
+          break;
         }
         default: {
           // Erro interno do servidor
@@ -79,19 +79,19 @@ export class ApiService {
     * @param {formData} postData - Um formData com os dados que serão enviados
     * @param {boolean} callLoader - Usado para renderizar o loader se necessário
     */
-   private async request(metodo : string, url : string, postData : FormData) {
-      let loader = await this.loadingCtrl.create({
+   private async request(metodo: string, url: string, postData: FormData) {
+      const loader = await this.loadingCtrl.create({
           message: 'Aguarde...',
           keyboardClose: true
       });
-      
+
       return loader.present().then(() => {
         return this.storage.get('token').then(token => {
           let headers = this.headers;
           if (token) {
             headers = this.headers.append('Authorization', 'Token ' + token);
           }
-  
+
           return new Promise(resolve => {
             this.http.request(
               metodo,
@@ -109,7 +109,7 @@ export class ApiService {
             );
           });
         });
-      });   
+      });
     }
 
     /**
@@ -117,7 +117,7 @@ export class ApiService {
     * @param {string} url - A url relativa que será chamada sem a '/' inicial
     * @param {boolean} callLoader - Usado para renderizar o loader se necessário
     */
-    public get(url : string, callLoader : boolean = true) {
+    public get(url: string, callLoader: boolean = true) {
       return this.request('GET', url, new FormData());
     }
 
@@ -149,5 +149,4 @@ export class ApiService {
     public patch(url: string, postData: any) {
       return this.request('PATCH', url, postData);
     }
-
 }

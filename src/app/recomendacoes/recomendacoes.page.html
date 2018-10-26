@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Recomendações</ion-title>
+    <ion-title>Solicitar Recomendações</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,10 +14,10 @@
     </ion-fab-button>
   </ion-fab>
   <ion-grid>
-    <ion-row *ngIf="!recomendacoes.length">
+    <ion-row *ngIf="!recomendacoes?.length">
       <ion-col size-xs="12">
           <img src="../../assets/images/coordination.png" class="icone-pagina">
-          <p class="text-center">Você ainda não solicitou nenhuma recomendação. Crie uma e aguarde o recebimento de locais interessantes!</p>
+          <p class="text-center">Você ainda não solicitou nenhuma recomendação. Crie uma solicitação e aguarde o recebimento de locais interessantes!</p>
       </ion-col>      
     </ion-row>
     <ion-row>

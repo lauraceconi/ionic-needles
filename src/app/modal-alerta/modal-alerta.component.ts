@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { ModalController, Events } from '@ionic/angular';
 
 @Component({
   selector: 'app-modal-alerta',
@@ -8,15 +7,15 @@ import { Router } from '@angular/router';
 })
 export class ModalAlertaComponent implements OnInit {
 
-  @Input('tipo') tipo : string;
-  @Input('icone') icone : string;
-  @Input('titulo') titulo : string;
-  @Input('mensagem') mensagem : string;
-  @Input('redirecionar') redirecionar : boolean;
+  @Input('tipo') tipo: string;
+  @Input('icone') icone: string;
+  @Input('titulo') titulo: string;
+  @Input('mensagem') mensagem: string;
+  @Input('redirecionar') redirecionar: boolean;
 
   constructor(
     public modalCtrl: ModalController,
-    public router: Router,
+    public events: Events
   ) { }
 
   ngOnInit() {
@@ -24,7 +23,7 @@ export class ModalAlertaComponent implements OnInit {
 
   public fecharModal() {
     this.modalCtrl.dismiss();
-    if (this.redirecionar) { this.router.navigateByUrl(''); }
+    if (this.redirecionar) { this.events.publish('realizarLogout'); }
   }
 
 }

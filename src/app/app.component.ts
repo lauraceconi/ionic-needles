@@ -42,7 +42,7 @@ export class AppComponent {
       icon: 'paper'
     },
     {
-      title: 'Recomendações',
+      title: 'Solicitar recomendações',
       url: '/recomendacoes',
       icon: 'megaphone'
     },
@@ -108,13 +108,17 @@ export class AppComponent {
           }
         });
       });
+
+      this.events.subscribe('realizarLogout', () => {
+        this.storage.clear().then(() => {
+          this.router.navigateByUrl('');
+        });
+      });
     });
   }
 
   public logout() {
-    this.storage.clear().then(() => {
-      this.router.navigateByUrl('');
-    });
+    this.events.publish('realizarLogout');
   }
 
   public isActive(url) {

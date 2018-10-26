@@ -12,16 +12,16 @@ export class AlertaService {
     private modalCtrl: ModalController,
   ) { }
 
-  async mostrarModal(tipo: string, icone: string, titulo: string, mensagem: string, redirecionar : boolean = false) {
+  async mostrarModal(tipo: string, icone: string, titulo: string, mensagem: string, redirecionar: boolean = false) {
     const modal = await this.modalCtrl.create({
       component: ModalAlertaComponent,
       cssClass: 'alert-popup',
-      componentProps: { 
+      componentProps: {
         'tipo': tipo,
         'icone': icone,
         'titulo': titulo,
         'mensagem': mensagem,
-        'redirecionar': redirecionar 
+        'redirecionar': redirecionar
       }
     });
     return await modal.present();
