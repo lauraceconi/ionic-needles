@@ -53,6 +53,7 @@ export class DiariosPage implements OnInit {
           text: 'Criar',
           handler: data => {
             this.service.criarDiario(data.titulo).then(response  => {
+              this.carregarDiarios();
               this.router.navigate(['/diarios', response['id']]);
             });
           }

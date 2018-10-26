@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ diario.titulo }}</ion-title>
+    <ion-title>{{ diario?.titulo }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,14 +14,14 @@
     </ion-fab-button>
   </ion-fab>
   <ion-grid>
-    <ion-row *ngIf="!diario.locais_de_interesse.length">
+    <ion-row *ngIf="!diario?.locais_de_interesse.length">
       <ion-col size-xs="12">
         <h1>Locais de interesse</h1>
         <p>Você ainda não adicionou locais interessantes neste Diário. Vamos lá!</p>
       </ion-col>      
     </ion-row>
     <ion-row>
-      <ion-col size-md="4" size-xs="12" *ngFor="let local of diario.locais_de_interesse">
+      <ion-col size-md="4" size-xs="12" *ngFor="let local of diario?.locais_de_interesse">
         <ion-card class="card-item" (click)="acessarLocal(local.id)"> 
           <ion-card-header class="card-foto" [ngStyle]="{'background-image': 'url('+ local.foto +')', 'background-size': 'cover' }" *ngIf="local.foto">
           </ion-card-header>

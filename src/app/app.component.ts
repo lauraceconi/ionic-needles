@@ -76,13 +76,13 @@ export class AppComponent {
           actionMessage: 'Você gostaria de receber notificações de Wanderlust?',
           acceptButtonText: 'Sim!',
           cancelButtonText: 'Agora não'
+        },
+        welcomeNotification: {
+          'title': 'Seja bem-vindo!',
+          'message': 'Estamos prontos para lhe enviar novidades!'
         }
       }]);
       console.log('OneSignal Initialized');
-      /*OneSignal.push(function () {
-        console.log('Register For Push');
-        OneSignal.push(['registerForPushNotifications']);
-      });*/
       OneSignal.push(function () {
         // Occurs when the user's subscription changes to a new value.
         OneSignal.on('subscriptionChange', function (isSubscribed) {

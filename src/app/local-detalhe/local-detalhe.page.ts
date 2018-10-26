@@ -15,7 +15,7 @@ export class LocalDetalhePage implements OnInit {
   ) { }
 
   public local_id: string;
-  public local: any;
+  public local: any = {};
 
   ngOnInit() {
     this.local_id = this.route.snapshot.paramMap.get('id');
@@ -25,7 +25,7 @@ export class LocalDetalhePage implements OnInit {
   public getDetalhesLocal() {
     this.service.getDetalhesLocal(this.local_id).then(response => {
       this.local = response;
-    })
+    });
   }
 
 }

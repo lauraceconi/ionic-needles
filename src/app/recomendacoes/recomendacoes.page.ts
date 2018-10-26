@@ -16,7 +16,7 @@ export class RecomendacoesPage implements OnInit {
     public router: Router
   ) { }
 
-  public recomendacoes: any;
+  public recomendacoes: any = {};
 
   ngOnInit() {
     this.carregarRecomendacoes();

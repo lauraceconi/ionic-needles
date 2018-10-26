@@ -18,7 +18,7 @@ export class RecomendacaoDetalhePage implements OnInit {
   ) { }
 
   public recomendacao_id: string;
-  public recomendacao: object;
+  public recomendacao: any = {};
 
   ngOnInit() {
     this.recomendacao_id = this.route.snapshot.paramMap.get('id');

@@ -14,15 +14,17 @@ export class ModalAlertaComponent implements OnInit {
   @Input('mensagem') mensagem : string;
   @Input('redirecionar') redirecionar : boolean;
 
-  constructor(public modalCtrl: ModalController,
-              public router: Router,) { }
+  constructor(
+    public modalCtrl: ModalController,
+    public router: Router,
+  ) { }
 
   ngOnInit() {
   }
 
-  public fecharModal() {    
+  public fecharModal() {
     this.modalCtrl.dismiss();
-    if (this.redirecionar) this.router.navigateByUrl('');
-  }  
+    if (this.redirecionar) { this.router.navigateByUrl(''); }
+  }
 
 }

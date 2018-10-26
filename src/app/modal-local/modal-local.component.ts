@@ -23,7 +23,7 @@ export class ModalLocalComponent implements OnInit {
 
   public fecharModal() {
     this.modalCtrl.dismiss();
-  }  
+  }
 
   public adicionarLocal() {
     this.service.adicionarLocal(this.diario_id, this.local).then(response => {
@@ -32,7 +32,7 @@ export class ModalLocalComponent implements OnInit {
   }
 
   public uploadArquivo(event) {
-    this.local.foto = event.target.files[0]
+    this.local.foto = event.target.files[0];
   }
 
 }

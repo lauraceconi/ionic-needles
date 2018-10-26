@@ -55,7 +55,7 @@ export class FeedPage implements OnInit {
 
   public filtraUsuarios(event) {
     this.mensagemFiltro = '';
-    let valor = event.target.value;
+    const valor = event.target.value;
 
     if (valor.length > 1) {
       this.listaUsuariosFiltrados = this.listaUsuarios.filter(usuario => {
@@ -64,7 +64,7 @@ export class FeedPage implements OnInit {
     } else {
       this.listaUsuariosFiltrados = [];
       this.mensagemFiltro = 'Digite ao menos 2 caracteres';
-      return
+      return;
     }
 
     if (valor && !this.listaUsuariosFiltrados.length) {

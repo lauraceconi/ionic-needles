@@ -10,8 +10,10 @@ import { ModalGrupoComponent } from '../modal-grupo/modal-grupo.component';
 })
 export class GruposPage implements OnInit {
 
-  constructor(public service: GrupoService,
-              private modalCtrl: ModalController,) { }
+  constructor(
+    public service: GrupoService,
+    private modalCtrl: ModalController,
+  ) { }
 
   public grupos: any;
 
