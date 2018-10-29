@@ -9,10 +9,16 @@
 
 <ion-content>
 
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="perfilUsuario">
+      <ion-fab-button (click)="abrirModalEdicao()">
+        <ion-icon name="create"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
   <div class="topo-perfil"></div>
 
   <div class="foto-perfil">
-    <img src="https://image.flaticon.com/icons/svg/145/145843.svg">
+    <img [src]="dados.foto || '/assets/images/perfil.png'">
   </div>
 
   <h3 class="text-center">{{ dados.full_name }}</h3>

@@ -20,4 +20,8 @@ export class PerfilService {
     formData.append('classificacao_id', classificacao_id);
     return this.api.post(url, formData);
   }
+
+  public editarPerfil(dados) {
+    // editar perfil
+  }
 }

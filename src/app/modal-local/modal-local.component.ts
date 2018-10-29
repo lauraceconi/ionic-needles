@@ -9,9 +9,10 @@ import { DiarioService } from '../services/diario.service';
 })
 export class ModalLocalComponent implements OnInit {
 
-  constructor(public service: DiarioService,
-              public modalCtrl: ModalController,
-              ) { }
+  constructor(
+    public service: DiarioService,
+    public modalCtrl: ModalController,
+  ) { }
 
   @Input('diario_id') diario_id : string;
   public local: any = {};

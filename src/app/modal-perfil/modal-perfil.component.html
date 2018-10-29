@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Editar perfil</ion-title>
+      <ion-buttons slot="primary">
+        <ion-button (click)="fecharModal()">
+          <ion-icon slot="icon-only" name="close"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding>
+        <ion-list>
+          <ion-item>
+            <ion-label position="floating">Nome</ion-label>
+            <ion-input [(ngModel)]="dados.first_name"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Sobrenome</ion-label>
+            <ion-input [(ngModel)]="dados.last_name"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">E-mail</ion-label>
+            <ion-input [(ngModel)]="dados.email" type="email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Foto</ion-label>
+            <input type="file" (change)="uploadFoto($event)">
+          </ion-item>
+        </ion-list>
+        <ion-button expand="block" 
+                    color="primary" 
+                    [disabled]="
+                      !dados.first_name || 
+                      !dados.last_name || 
+                      !dados.email || 
+                      !dados.password" 
+                    (click)="cadastro()">
+          Salvar
+        </ion-button>
+  </ion-content>
+  

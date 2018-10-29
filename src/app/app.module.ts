@@ -19,6 +19,7 @@ import { ModalLocalComponent } from './modal-local/modal-local.component';
 import { FormsModule } from '@angular/forms';
 import { ModalGrupoComponent } from './modal-grupo/modal-grupo.component';
 import { ModalRecomendacaoComponent } from './modal-recomendacao/modal-recomendacao.component';
+import { ModalPerfilComponent } from './modal-perfil/modal-perfil.component';
 
 @NgModule({
   declarations: [
@@ -27,12 +28,14 @@ import { ModalRecomendacaoComponent } from './modal-recomendacao/modal-recomenda
     ModalLocalComponent,
     ModalGrupoComponent,
     ModalRecomendacaoComponent,
+    ModalPerfilComponent,
   ],
   entryComponents: [
     ModalAlertaComponent,
     ModalLocalComponent,
     ModalGrupoComponent,
-    ModalRecomendacaoComponent
+    ModalRecomendacaoComponent,
+    ModalPerfilComponent,
   ],
   imports: [
     BrowserModule,

@@ -47,7 +47,7 @@ export class LoginPage implements OnInit {
   }
 
   public login() {
-    let dados = {};
+    const dados = {};
     for (let key in this.dados_login) {
       dados[key] = this.dados_login[key];
     }
@@ -60,7 +60,7 @@ export class LoginPage implements OnInit {
   }
 
   public cadastro() {
-    let dados = {};
+    const dados = {};
     for (let key in this.dados_cadastro) {
       dados[key] = this.dados_cadastro[key];
     }

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { ActivatedRoute } from '@angular/router';
 import { LoginService } from '../services/login.service';
 import { PerfilService } from '../services/perfil.service';
+import { ModalPerfilComponent } from '../modal-perfil/modal-perfil.component';
 
 @Component({
   selector: 'app-perfil',
@@ -18,6 +19,7 @@ export class PerfilPage implements OnInit {
     public storage: Storage,
     public route: ActivatedRoute,
     public alertController: AlertController,
+    public modalCtrl: ModalController
   ) { }
 
   public dados: any = {};
@@ -109,6 +111,17 @@ export class PerfilPage implements OnInit {
 
     await alert.present();
 
+  }
+
+  public async abrirModalEdicao() {
+    const modal = await this.modalCtrl.create({
+      component: ModalPerfilComponent,
+      componentProps: { dados: this.dados }
+    });
+    modal.onDidDismiss().then(() => {
+      this.getDadosUsuarioLogado();
+    });
+    return await modal.present();
   }
 
 }
