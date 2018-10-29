@@ -27,6 +27,17 @@ export class GruposPage implements OnInit {
     });
   }
 
+  public async acessarGrupo(id) {
+    const modal = await this.modalCtrl.create({
+      component: ModalGrupoComponent,
+      componentProps: { id: id }
+    });
+    modal.onDidDismiss().then(() => {
+      this.getGrupos();
+    });
+    return await modal.present();
+  }
+
   public async abrirModalGrupo() {
     const modal = await this.modalCtrl.create({
       component: ModalGrupoComponent

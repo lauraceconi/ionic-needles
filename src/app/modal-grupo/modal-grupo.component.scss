@@ -1,0 +1,19 @@
+ion-item {
+    --padding-start: 0;
+    &.erro {
+        --border-color: red;
+    }
+    &.mensagem-erro {
+        font-size: 12px;
+        color: red;
+    }
+}
+ion-list.lista-membros {
+    margin-top: 15px;
+    background-color: #e8e8e8;
+    padding: 8px;
+    ion-item {
+        --background: #e8e8e8; 
+        font-size: 14px;
+    }
+}

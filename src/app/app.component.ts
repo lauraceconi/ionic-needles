@@ -42,7 +42,7 @@ export class AppComponent {
       icon: 'paper'
     },
     {
-      title: 'Solicitar recomendações',
+      title: 'Recomendações',
       url: '/recomendacoes',
       icon: 'megaphone'
     },
@@ -79,7 +79,7 @@ export class AppComponent {
         },
         welcomeNotification: {
           'title': 'Seja bem-vindo!',
-          'message': 'Estamos prontos para lhe enviar novidades!'
+          'message': 'Estamos prontos para te enviar novidades!'
         }
       }]);
       console.log('OneSignal Initialized');
@@ -108,17 +108,13 @@ export class AppComponent {
           }
         });
       });
-
-      this.events.subscribe('realizarLogout', () => {
-        this.storage.clear().then(() => {
-          this.router.navigateByUrl('');
-        });
-      });
     });
   }
 
   public logout() {
-    this.events.publish('realizarLogout');
+    this.storage.clear().then(() => {
+      this.router.navigateByUrl('');
+    });
   }
 
   public isActive(url) {

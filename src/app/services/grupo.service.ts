@@ -10,17 +10,18 @@ export class GrupoService {
   constructor(private api: ApiService) { }
 
   public getGrupos() {
-    let url = SETTINGS.API_URL + 'grupos/';
+    const url = SETTINGS.API_URL + 'grupos/';
     return this.api.get(url);
   }
 
-  public criarGrupo(dados: object) {
-    let url = SETTINGS.API_URL + 'grupos/';
-    let formData = new FormData();
-    for (let key in dados) {
-      formData.append(key, dados[key]);
-    }
-    debugger
-    return this.api.post(url, formData);
+  public getGrupo(id) {
+    const url = SETTINGS.API_URL + 'grupos/' + id + '/';
+    return this.api.get(url);
+  }
+
+  public criarGrupo(dados) {
+    const url = SETTINGS.API_URL + 'grupos/';
+    dados = JSON.stringify(dados);
+    return this.api.postJSON(url, dados);
   }
 }

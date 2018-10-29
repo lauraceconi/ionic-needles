@@ -18,18 +18,21 @@ import { DiarioService } from './services/diario.service';
 import { ModalLocalComponent } from './modal-local/modal-local.component';
 import { FormsModule } from '@angular/forms';
 import { ModalGrupoComponent } from './modal-grupo/modal-grupo.component';
+import { ModalRecomendacaoComponent } from './modal-recomendacao/modal-recomendacao.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ModalAlertaComponent,
     ModalLocalComponent,
-    ModalGrupoComponent
+    ModalGrupoComponent,
+    ModalRecomendacaoComponent,
   ],
   entryComponents: [
     ModalAlertaComponent,
     ModalLocalComponent,
-    ModalGrupoComponent
+    ModalGrupoComponent,
+    ModalRecomendacaoComponent
   ],
   imports: [
     BrowserModule,

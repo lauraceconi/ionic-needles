@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { GrupoService } from '../services/grupo.service';
 import { LoginService } from '../services/login.service';
@@ -16,15 +16,23 @@ export class ModalGrupoComponent implements OnInit {
     public loginService: LoginService
   ) { }
 
+  @Input('id') id : string;
   public grupo: any = { 'membros': [] };
   public membros: any = [];
   public listaUsuarios: any = [];
   public listaUsuariosFiltrados: any = [];
   public mensagemFiltro: string;
+  public erros: any = {};
 
   ngOnInit() {
     this.mensagemFiltro = '';
     this.getListaUsuarios();
+    if (this.id) {
+      this.grupoService.getGrupo(this.id).then(response => {
+        this.grupo = response;
+        this.membros = response['membros'];
+      });
+    }
   }
 
   public fecharModal() {
@@ -39,16 +47,16 @@ export class ModalGrupoComponent implements OnInit {
 
   public filtraUsuarios(event) {
     this.mensagemFiltro = '';
-    let valor = event.target.value;
+    const valor = event.target.value;
 
     if (valor.length > 1) {
       this.listaUsuariosFiltrados = this.listaUsuarios.filter(usuario => {
-        return usuario.full_name.toLowerCase().indexOf(valor.toLowerCase()) > -1;;
+        return usuario.full_name.toLowerCase().indexOf(valor.toLowerCase()) > -1;
       });
     } else {
       this.listaUsuariosFiltrados = [];
       this.mensagemFiltro = 'Digite ao menos 2 caracteres';
-      return
+      return;
     }
 
     if (valor && !this.listaUsuariosFiltrados.length) {
@@ -57,27 +65,40 @@ export class ModalGrupoComponent implements OnInit {
   }
 
   public addMembro(usuario: any) {
-    var index1 = this.listaUsuarios.indexOf(usuario);
-    var index2 = this.listaUsuariosFiltrados.indexOf(usuario);
-    if (index1 > -1) this.listaUsuarios.splice(index1, 1);
-    if (index2 > -1) this.listaUsuariosFiltrados.splice(index2, 1);
+    const index1 = this.listaUsuarios.indexOf(usuario);
+    const index2 = this.listaUsuariosFiltrados.indexOf(usuario);
+    if (index1 > -1) { this.listaUsuarios.splice(index1, 1); }
+    if (index2 > -1) { this.listaUsuariosFiltrados.splice(index2, 1); }
     this.membros.push(usuario);
   }
 
   public removeMembro(usuario: any) {
-    var index = this.membros.indexOf(usuario);
-    if (index > -1) this.membros.splice(index, 1);
+    const index = this.membros.indexOf(usuario);
+    if (index > -1) { this.membros.splice(index, 1); }
     this.listaUsuarios.push(usuario);
   }
 
   public criarGrupo() {
-    for (let i=0;i<this.membros.length;i++) {
-      (this.grupo['membros']).push(this.membros[i].id);
+    this.grupo['membros'] = [];
+    for (let i = 0; i < this.membros.length; i++) {
+      (this.grupo['membros']).push(parseInt(this.membros[i].id));
     }
-    //this.grupo['membros'] = this.membros;
+    // this.grupo['membros'] = this.membros;
     this.grupoService.criarGrupo(this.grupo).then(response => {
-      this.fecharModal();
+      if (response['status'] == 400) {
+        const chaves = Object.keys(response['error']);
+        for (let i in chaves) {
+          this.erros[chaves[i]] = response['error'][chaves[i]];
+        }
+      } else {
+        this.fecharModal();
+      }
     });
+  }
+
+  public removeErro(campo) {
+    const mensagemCampo = this.erros[campo];
+    if (mensagemCampo) { delete this.erros[campo]; }
   }
 
 }

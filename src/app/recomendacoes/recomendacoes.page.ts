@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { RecomendacoesService } from '../services/recomendacoes.service';
+import { ModalRecomendacaoComponent } from '../modal-recomendacao/modal-recomendacao.component';
 
 @Component({
   selector: 'app-recomendacoes',
@@ -12,17 +13,17 @@ export class RecomendacoesPage implements OnInit {
 
   constructor(
     public service: RecomendacoesService,
-    public alertController: AlertController,
+    public modalCtrl: ModalController,
     public router: Router
   ) { }
 
-  public recomendacoes: any = {};
+  public recomendacoes: any;
 
   ngOnInit() {
-    this.carregarRecomendacoes();
+    this.getRecomendacoes();
   }
 
-  public carregarRecomendacoes() {
+  public getRecomendacoes() {
     this.service.getRecomendacoes().then(response  => {
       this.recomendacoes = response;
     });
@@ -33,31 +34,12 @@ export class RecomendacoesPage implements OnInit {
   }
 
   async criarNovaRecomendacao() {
-    const alert = await this.alertController.create({
-      header: 'Nova solicitação de recomendação',
-      inputs: [
-        {
-          name: 'descricao',
-          type: 'text',
-          placeholder: 'Descreva sua solicitação'
-        }
-      ],
-      buttons: [
-        {
-          text: 'Fechar',
-          role: 'cancel',
-          cssClass: 'secondary'
-        },
-        {
-          text: 'Criar',
-          handler: data => {
-            this.service.criarRecomendacao(data.descricao).then(response  => {
-              this.router.navigate(['/recomendacoes', response['id']]);
-            });
-          }
-        }
-      ]
+    const modal = await this.modalCtrl.create({
+      component: ModalRecomendacaoComponent
     });
-    await alert.present();
+    modal.onDidDismiss().then(() => {
+      this.getRecomendacoes();
+    });
+    return await modal.present();
   }
 }

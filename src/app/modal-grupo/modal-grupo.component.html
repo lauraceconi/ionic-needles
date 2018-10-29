@@ -11,13 +11,19 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item>
+    <ion-item [class.erro]="erros.name">
       <ion-label position="floating">Nome do Grupo</ion-label>
-      <ion-input [(ngModel)]="grupo.name"></ion-input>
+      <ion-input [(ngModel)]="grupo.name" (click)="removeErro('name')"></ion-input>
     </ion-item>
-    <ion-item>
+    <ion-item class="mensagem-erro" *ngIf="erros.name">
+      {{ erros.name }}
+    </ion-item>
+    <ion-item [class.erro]="erros.membros">
       <ion-label position="floating">Buscar usuários</ion-label>
-      <ion-input (ionInput)="filtraUsuarios($event)"></ion-input>
+      <ion-input (ionInput)="filtraUsuarios($event)" (click)="removeErro('membros')"></ion-input>
+    </ion-item>
+    <ion-item class="mensagem-erro" *ngIf="erros.membros">
+      {{ erros.membros }}
     </ion-item>
     <ion-item *ngFor="let usuario of listaUsuariosFiltrados">
       {{ usuario.full_name }}
@@ -27,17 +33,17 @@
     </ion-item>
     <p *ngIf="mensagemFiltro">
       {{ mensagemFiltro }}
-    </p>
-    <div *ngIf="membros.length">
-      <hr>
-      Membros adicionados
-      <ion-item *ngFor="let usuario of membros">
-        {{ usuario.full_name }}
-        <ion-button slot="end" fill="clear" size="large" (click)="removeMembro(usuario)" color="danger">
-          <ion-icon name="close-circle" slot="end"></ion-icon>
-        </ion-button>
-      </ion-item>
-    </div>
+    </p>        
+  </ion-list>
+
+  <ion-list *ngIf="membros.length" class="lista-membros">
+    Membros adicionados        
+    <ion-item *ngFor="let usuario of membros">
+      {{ usuario.full_name }}
+      <ion-button slot="end" fill="clear" size="medium" (click)="removeMembro(usuario)" color="danger">
+        <ion-icon name="close-circle" slot="end"></ion-icon>
+      </ion-button>
+    </ion-item>
   </ion-list>
     
     <ion-button expand="block" 

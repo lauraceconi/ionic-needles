@@ -19,11 +19,9 @@ export class ApiService {
 
     /**
     * Função usada para capturar os erros de conexão
-    * @param {string} metodo - Qual o método que foi usado GET, POST, etc...
-    * @param {string} url - Qual a URL que foi chamada para gerar o erro.
     * @param {HttpErrorResponse} erro - Qual o erro de retorno do servidor
     */
-    private catchError(metodo: string, url: string, erro: HttpErrorResponse): void {
+    private catchError(erro: HttpErrorResponse): void {
       switch (erro.status) {
         case 401: {
           // Não autenticado
@@ -56,6 +54,10 @@ export class ApiService {
             'A página que você está tentando acessar não existe.',
             true
           );
+          break;
+        }
+        case 400: {
+          // Erro de parâmetros devem ser mostrados na tela
           break;
         }
         default: {
@@ -103,8 +105,9 @@ export class ApiService {
                 loader.dismiss();
               },
               (erro) => {
+                resolve(erro);
                 loader.dismiss();
-                this.catchError(metodo, url, erro);
+                this.catchError(erro);
               }
             );
           });
@@ -138,6 +141,46 @@ export class ApiService {
     */
     public post(url: string, postData: any) {
       return this.request('POST', url, postData);
+    }
+
+    /**
+    * Realiza uma requisicao de post, passando os dados no formato JSON
+    * @param {string} url - A url relativa que será chamada sem a '/' inicial
+    * @param {any} JSONdata - Dados stringificados para JSON
+    */
+    public async postJSON(url: string, JSONdata: any) {
+      const loader = await this.loadingCtrl.create({
+          message: 'Aguarde...',
+          keyboardClose: true
+      });
+
+      return loader.present().then(() => {
+        return this.storage.get('token').then(token => {
+          let headers = this.headers;
+          if (token) {
+            headers = headers.set('Authorization', 'Token ' + token);
+            headers = headers.set('Content-Type', 'application/json');
+          }
+
+          return new Promise(resolve => {
+            this.http.post(
+              url,
+              JSONdata,
+              { headers: headers }
+            ).subscribe(
+              (data) => {
+                resolve(data);
+                loader.dismiss();
+              },
+              (erro) => {
+                resolve(erro);
+                loader.dismiss();
+                this.catchError(erro);
+              }
+            );
+          });
+        });
+      });
     }
 
     /**
