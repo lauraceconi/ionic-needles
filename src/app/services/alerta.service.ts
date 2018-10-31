@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { ModalAlertaComponent } from '../modal-alerta/modal-alerta.component';
+import { ModalAlertaComponent } from '../components/modal-alerta/modal-alerta.component';
 
 @Injectable({
   providedIn: 'root'

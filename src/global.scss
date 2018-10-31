@@ -73,16 +73,17 @@ ion-router-outlet ion-content {
 
 ion-card {
     background-color: #fff;
+    /*&:first-child {
+        margin-left:0;
+    }*/
+    .card-buttons {
+        text-align: right;
+        border-top: 1px solid #ccc;
+    }
 }
 
 .split-pane-md.split-pane-visible>.split-pane-side {
     max-width: 20%;
-}
-
-ion-card {
-    &:first-child {
-        margin-left:0;
-    }
 }
 
 ion-modal.alert-popup {

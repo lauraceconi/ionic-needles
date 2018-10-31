@@ -1,7 +1,6 @@
 const DEBUG = true;
-//const SERVIDOR = 'https://lceconi.pythonanywhere.com/';
-const SERVIDOR = 'http://192.168.161.128:8000/';
-//const SERVIDOR = 'http://localhost:8000/';
+let SERVIDOR = '';
+SERVIDOR = DEBUG ? 'http://192.168.161.128:8000/' : 'https://needles.speakhub.me/';
 
 // Configurações gerais
 export const SETTINGS = Object.freeze({

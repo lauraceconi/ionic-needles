@@ -7,7 +7,9 @@ import { ApiService } from './api.service';
 })
 export class RecomendacoesService {
 
-  constructor(private api: ApiService) { }
+  constructor(
+    private api: ApiService
+  ) { }
 
   public getRecomendacoes() {
     const url = SETTINGS.API_URL + 'recomendacoes/';
@@ -19,10 +21,8 @@ export class RecomendacoesService {
     return this.api.get(url);
   }
 
-  public criarRecomendacao(descricao: string) {
+  public criarRecomendacao(dados: any) {
     const url = SETTINGS.API_URL + 'recomendacoes/';
-    const formData = new FormData();
-    formData.append('descricao', descricao);
-    return this.api.post(url, formData);
+    return this.api.postJSON(url, dados);
   }
 }

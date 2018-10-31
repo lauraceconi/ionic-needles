@@ -12,30 +12,19 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
-import { ModalAlertaComponent } from './modal-alerta/modal-alerta.component';
 import { ApiService } from './services/api.service';
-import { DiarioService } from './services/diario.service';
-import { ModalLocalComponent } from './modal-local/modal-local.component';
 import { FormsModule } from '@angular/forms';
-import { ModalGrupoComponent } from './modal-grupo/modal-grupo.component';
-import { ModalRecomendacaoComponent } from './modal-recomendacao/modal-recomendacao.component';
-import { ModalPerfilComponent } from './modal-perfil/modal-perfil.component';
+
+import { ModalAlertaComponent } from './components/modal-alerta/modal-alerta.component';
+import { DiarioService } from './services/diario.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ModalAlertaComponent,
-    ModalLocalComponent,
-    ModalGrupoComponent,
-    ModalRecomendacaoComponent,
-    ModalPerfilComponent,
+    ModalAlertaComponent
   ],
   entryComponents: [
-    ModalAlertaComponent,
-    ModalLocalComponent,
-    ModalGrupoComponent,
-    ModalRecomendacaoComponent,
-    ModalPerfilComponent,
+    ModalAlertaComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +32,7 @@ import { ModalPerfilComponent } from './modal-perfil/modal-perfil.component';
       mode: 'md'
     }),
     IonicStorageModule.forRoot({
-      name: "__needles",
+      name: '__needles',
       driverOrder: ['indexeddb', 'websql', 'localstorage']
     }),
     AppRoutingModule,

@@ -10,7 +10,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "buildwww": "rm -rf www/; ionic build --prod; cp OneSignalSDKUpdaterWorker.js www/; cp OneSignalSDKWorker.js www/"
+    "buildwww": "rm -rf www/; sed -i 's/true/false/g' src/app/settings.ts; ionic build --prod; cp OneSignalSDKUpdaterWorker.js www/; cp OneSignalSDKWorker.js www/; sed -i 's/false/true/g' src/app/settings.ts"
   },
   "private": true,
   "dependencies": {

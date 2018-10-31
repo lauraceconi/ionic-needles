@@ -21,7 +21,6 @@ export class GrupoService {
 
   public criarGrupo(dados) {
     const url = SETTINGS.API_URL + 'grupos/';
-    dados = JSON.stringify(dados);
     return this.api.postJSON(url, dados);
   }
 }

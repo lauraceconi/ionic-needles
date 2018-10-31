@@ -1,0 +1,36 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title>{{ grupo?.name }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{ grupo?.name }}</ion-card-title>        
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Membros:</strong></p>
+        <p *ngFor="let usuario of grupo.membros" (click)="acessarGrupo(grupo.id)">
+          - {{ usuario.full_name }}
+        </p>
+      </ion-card-content>    
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>Recomendações solicitadas</ion-card-subtitle>        
+      </ion-card-header>
+      <ion-card-content>
+        <p *ngFor="let recomendacao of grupo.recomendacoes" (click)="acessarRecomendacao(recomendacao.id)">
+          - {{ recomendacao.descricao }}
+        </p>
+      </ion-card-content>    
+    </ion-card>
+    
+  
+  </ion-content>
+  

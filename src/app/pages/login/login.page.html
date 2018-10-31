@@ -1,0 +1,108 @@
+<ion-content padding>  
+  <img src="../../assets/images/logo.png" class="logo">
+  <div class="login-form">
+    <div *ngIf="abaAtiva == 'cadastro'">      
+      <h3>Cadastre-se</h3>
+      <ion-list>
+        <ion-item>
+          <ion-label position="floating">Nome</ion-label>
+          <ion-input [(ngModel)]="dados_cadastro.first_name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Sobrenome</ion-label>
+          <ion-input [(ngModel)]="dados_cadastro.last_name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">E-mail</ion-label>
+          <ion-input [(ngModel)]="dados_cadastro.email" type="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Senha</ion-label>
+          <ion-input [(ngModel)]="dados_cadastro.password" type="password"></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-button expand="block" 
+                  color="primary" 
+                  [disabled]="
+                    !dados_cadastro.first_name || 
+                    !dados_cadastro.last_name || 
+                    !dados_cadastro.email || 
+                    !dados_cadastro.password" 
+                  (click)="cadastro()">
+        Cadastrar
+      </ion-button>
+      <p>Já possui conta? <a href="" (click)="trocarAba($event, 'login')">Entrar</a>
+      </p>
+    </div>
+    <div *ngIf="abaAtiva == 'login'">
+      <h3>Entrar</h3>
+      <ion-list>
+        <ion-item>
+          <ion-label position="floating">E-mail</ion-label>
+          <ion-input [(ngModel)]="dados_login.username" type="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Senha</ion-label>
+          <ion-input [(ngModel)]="dados_login.password" type="password"></ion-input>
+        </ion-item>
+      </ion-list>      
+      <ion-button expand="block" 
+                  color="primary" 
+                  [disabled]="
+                    !dados_login.username || 
+                    !dados_login.password" 
+                  (click)="login()">
+        Entrar
+      </ion-button>
+      <p>Não possui conta? <a href="" (click)="trocarAba($event, 'cadastro')">Cadastre-se</a>
+      </p>
+    </div>
+  </div>
+</ion-content>
+
+<style>
+ion-content {
+  background-image: url('/assets/images/background-login.jpg');
+  width: 100%;
+  height: 100%;
+  background-size: cover;    
+}
+
+ion-content:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(to bottom, rgba(255,50,54,1) 0%,rgba(41,137,216,0.77) 23%,rgba(32,124,202,0.3) 70%,rgba(125,185,232,0) 100%); 
+  opacity: .6;
+}
+
+.login-form {
+    width: 40%;
+    background-color: white;
+    margin: 0 auto;
+    padding: 50px;    
+}
+
+.logo {
+    width: 40%;
+    margin: 20px auto;
+    display: block;    
+}
+
+a {
+    font-weight: bold;
+}
+
+@media (max-width: 700px) {
+  .logo {
+    width: 90%;
+  }
+  .login-form {
+    width: 90%;
+    padding: 10px;
+  }
+}
+</style>

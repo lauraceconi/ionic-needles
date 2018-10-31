@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Solicitar recomendação</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="fecharModal()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item [class.erro]="erros.descricao">
+      <ion-input type="text" 
+                 placeholder="Descreva sua solicitação de sugestão" 
+                 [(ngModel)]="recomendacao.descricao" 
+                 (click)="removeErro('name')">
+      </ion-input>
+    </ion-item>
+    <ion-item class="mensagem-erro" *ngIf="erros.descricao">
+      {{ erros.descricao }}
+    </ion-item>
+    <ion-item [class.erro]="erros.compartilhamento">
+      <ion-label>Solicitar para:</ion-label>
+      <ion-select [(ngModel)]="compartilhamento" okText="Ok" cancelText="Cancelar" multiple="true">
+        <ion-select-option value="seguidores" selected>Seguidores</ion-select-option>
+        <ion-select-option *ngFor="let grupo of grupos" value="{{ grupo.id }}">{{ grupo.name }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item class="mensagem-erro" *ngIf="erros.compartilhamento">
+      {{ erros.compartilhamento }}
+    </ion-item>
+  </ion-list>
+    
+    <ion-button expand="block" 
+                color="primary" 
+                [disabled]="!recomendacao.descricao" 
+                (click)="criarRecomendacao()">
+      Criar
+    </ion-button>
+
+</ion-content>
