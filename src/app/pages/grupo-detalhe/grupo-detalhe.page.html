@@ -1,36 +1,43 @@
 <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-back-button></ion-back-button>
-      </ion-buttons>
-      <ion-title>{{ grupo?.name }}</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ grupo?.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
   
-  <ion-content padding>
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>{{ grupo?.name }}</ion-card-title>        
-      </ion-card-header>
-      <ion-card-content>
-        <p><strong>Membros:</strong></p>
-        <p *ngFor="let usuario of grupo.membros" (click)="acessarGrupo(grupo.id)">
-          - {{ usuario.full_name }}
-        </p>
-      </ion-card-content>    
-    </ion-card>
+<ion-content padding>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ grupo?.name }}</ion-card-title>        
+    </ion-card-header>
+    <ion-list>
+      <ion-item-divider>
+        Membros
+      </ion-item-divider>
+      <ion-grid>
+        <ion-row>
+          <ion-col size-xs="3" size-sm="1" class="perfil-membro" *ngFor="let usuario of grupo.membros" (click)="acessarGrupo($event, grupo.id)">
+            <img [src]="usuario.foto || '/assets/images/perfil.png'">
+            {{ usuario?.first_name }}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-list>  
+  </ion-card>
 
-    <ion-card>
-      <ion-card-header>
-        <ion-card-subtitle>Recomendações solicitadas</ion-card-subtitle>        
-      </ion-card-header>
-      <ion-card-content>
-        <p *ngFor="let recomendacao of grupo.recomendacoes" (click)="acessarRecomendacao(recomendacao.id)">
-          - {{ recomendacao.descricao }}
-        </p>
-      </ion-card-content>    
-    </ion-card>
-    
-  
-  </ion-content>
-  
+  <ion-card>
+    <ion-list lines="full">
+      <ion-item-divider>
+        Recomendações solicitadas ao grupo
+      </ion-item-divider>    
+      <ion-item detail="true" href="#" *ngFor="let recomendacao of grupo.recomendacoes" (click)="acessarRecomendacao($event, recomendacao.id)">
+        <ion-label text-wrap>
+          <p>{{ recomendacao.descricao }}</p>
+          <p class="texto-item">{{ recomendacao.qntd_diarios }} diários recomendados</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>  
+  </ion-card>
+</ion-content>

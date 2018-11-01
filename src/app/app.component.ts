@@ -42,7 +42,7 @@ export class AppComponent {
       icon: 'paper'
     },
     {
-      title: 'Recomendações',
+      title: ' Solicitar Recomendações',
       url: '/recomendacoes',
       icon: 'megaphone'
     },

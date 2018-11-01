@@ -8,8 +8,20 @@
 </ion-header>
 
 <ion-content padding>
-  <h1>{{ local.nome }}</h1>
-  <p>{{ local.descricao }}</p>
-  <img [src]="local.foto">
+  <ion-card *ngIf="!recomendacaoUsuario">
+    <ion-card-header>
+      <ion-card-title>{{ local.nome }}</ion-card-title>
+      <ion-card-subtitle>{{ local.descricao }}</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card *ngIf="!recomendacaoUsuario">
+    <ion-item-divider>
+      Fotos
+    </ion-item-divider>
+    <ion-card-content>
+      <img [src]="local.foto">
+    </ion-card-content>    
+  </ion-card>
 
 </ion-content>

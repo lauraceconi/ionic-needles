@@ -21,12 +21,9 @@
       </ion-col>      
     </ion-row>
     <ion-row>
-      <ion-col size-md="4" size-xs="12" *ngFor="let diario of diarios">
+      <ion-col size-lg="4" size-md="6" size-xs="12" *ngFor="let diario of diarios">
         <ion-card class="card-item"> 
           <div (click)="acessarDiario(diario.id)">
-            <ion-card-header>
-              <ion-icon name="image"></ion-icon>
-            </ion-card-header>
             <ion-card-content>
               <ion-card-title>{{ diario.titulo }}</ion-card-title>
             </ion-card-content>

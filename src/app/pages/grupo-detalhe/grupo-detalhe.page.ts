@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { GrupoService } from '../../services/grupo.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-grupo-detalhe',
@@ -12,7 +12,8 @@ export class GrupoDetalhePage implements OnInit {
 
   constructor(
     public service: GrupoService,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    public router: Router,
   ) { }
 
   public grupo_id: string;
@@ -27,6 +28,11 @@ export class GrupoDetalhePage implements OnInit {
     this.service.getGrupo(this.grupo_id).then(response => {
       this.grupo = response;
     });
+  }
+
+  public acessarRecomendacao(e, id) {
+    e.preventDefault();
+    this.router.navigate(['/recomendacoes', id]);
   }
 
 }

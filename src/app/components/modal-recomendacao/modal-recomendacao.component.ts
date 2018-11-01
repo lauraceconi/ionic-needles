@@ -53,8 +53,6 @@ export class ModalRecomendacaoComponent implements OnInit {
       (this.recomendacao['grupos']).push(parseInt(this.compartilhamento[i]));
     }
 
-    debugger
-
     this.recomendacoesService.criarRecomendacao(this.recomendacao).then(response => {
       if (response['status'] == 400) {
         const chaves = Object.keys(response['error']);

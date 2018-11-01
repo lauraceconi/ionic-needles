@@ -11,16 +11,58 @@
   <ion-card>
     <ion-card-content>
       <p>{{ recomendacao?.descricao }}</p>
-      <br/>
-      <p><strong>Compartilhado com:</strong></p>
-      <p *ngIf="recomendacao.seguidores">
-        - Meus seguidores
-      </p>
-      <p *ngFor="let grupo of recomendacao.grupos" (click)="acessarGrupo(grupo.id)">
-        - {{ grupo.name }}
-      </p>
-    </ion-card-content>    
+    </ion-card-content>
   </ion-card>
-  
+
+  <ion-card *ngIf="!recomendacaoUsuario">
+    <ion-list>
+      <ion-item-divider>
+        Sugerir diário para esta solicitação
+      </ion-item-divider>
+    </ion-list>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label class="texto-item">Selecionar diários</ion-label>
+          <ion-select [(ngModel)]="diarios" okText="Ok" cancelText="Cancelar" multiple="true" *ngIf="meus_diarios?.length">
+            <ion-select-option *ngFor="let diario of meus_diarios" value="{{ diario.id }}">{{ diario.titulo }}</ion-select-option>
+          </ion-select>
+          <p class="texto-item" *ngIf="!meus_diarios?.length">Você não criou nenhum Diário de Viagem ainda.</p>
+        </ion-item>
+        <br/>
+        <ion-button size="full" (click)="sugerirDiarios()">Salvar</ion-button>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="recomendacao.diarios?.length">
+    <ion-list lines="full">
+      <ion-item-divider>
+        Diários recomendados
+      </ion-item-divider>    
+      <ion-item detail="true" href="#" *ngFor="let diario of recomendacao.diarios" (click)="acessarDiario($event, diario.id)">
+        <ion-label text-wrap>
+          <p>{{ diario.titulo }}</p>
+          <p class="texto-item">Recomendado por: {{ diario.autor.full_name }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>  
+  </ion-card>
+
+  <ion-card *ngIf="recomendacao.grupos?.length || recomendacao?.seguidores">
+    <ion-list lines="full">
+      <ion-item-divider>
+        Solicitado nos seguintes grupos:
+      </ion-item-divider>    
+      <ion-item *ngIf="recomendacao.seguidores">
+        Seguidores
+      </ion-item>
+      <ion-item detail="true" href="#" *ngFor="let grupo of recomendacao.grupos" (click)="acessarGrupo($event, diario.id)">
+        <ion-label text-wrap>
+          <p>{{ grupo.name }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>  
+  </ion-card>
 
 </ion-content>

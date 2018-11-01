@@ -21,17 +21,13 @@
       </ion-col>      
     </ion-row>
     <ion-row>
-      <ion-col size-md="4" size-xs="12" *ngFor="let recomendacao of recomendacoes">
+      <ion-col size-lg="4" size-md="6" size-xs="12" *ngFor="let recomendacao of recomendacoes">
         <ion-card class="card-item"> 
           <div (click)="acessarRecomendacao(recomendacao.id)">
-            <ion-card-header>
-              <ion-icon name="image"></ion-icon>
-            </ion-card-header>
             <ion-card-content>
               <p>{{ recomendacao?.descricao }}</p>
             </ion-card-content>
           </div>
-          <hr>
           <div class="card-buttons">
             <ion-button size="small" (click)="clickedStar()" fill="clear">
               <ion-icon size="small" slot="icon-only" name="create"></ion-icon>

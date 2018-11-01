@@ -25,4 +25,9 @@ export class RecomendacoesService {
     const url = SETTINGS.API_URL + 'recomendacoes/';
     return this.api.postJSON(url, dados);
   }
+
+  public sugerirDiarios(dados: any) {
+    const url = SETTINGS.API_URL + 'recomendacoes/' + dados.id + '/sugerir-diario/';
+    return this.api.postJSON(url, dados);
+  }
 }
