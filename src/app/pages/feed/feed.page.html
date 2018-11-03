@@ -30,6 +30,40 @@
   </ion-item>
 </div>
 <ion-content padding>
-  <p>feed</p>
-
+  <ion-grid>
+    <ion-row>
+      <ion-col size-lg="6" size="12">
+        <ion-row>
+          <ion-col size="12" *ngFor="let recomendacao of recomendacoes">
+            <ion-card class="card-item" (click)="acessarRecomendacao(recomendacao.id)">
+              <div class="card-tipo recomendacao">
+                <ion-icon name="megaphone"></ion-icon> Solicitação de recomendação
+              </div>
+              <ion-card-content>
+                <p>{{ recomendacao.descricao }}</p>
+              </ion-card-content>
+              <div class="card-footer">
+                <img [src]="recomendacao.autor.foto || '/assets/images/perfil.png'"> Solicitado por {{ recomendacao.autor.full_name }}
+              </div>
+            </ion-card>
+            <ion-row>
+              <ion-col size="11" offset="1" *ngFor="let diario of recomendacao.diarios">                
+                <ion-card class="card-item" (click)="acessarDiario(diario.id)"> 
+                  <div class="card-tipo diario">
+                    <ion-icon name="paper"></ion-icon> Diário sugerido
+                  </div>
+                  <ion-card-content>
+                    <p>{{ diario.titulo }}</p>
+                  </ion-card-content>
+                  <div class="card-footer">
+                    <img [src]="recomendacao.autor.foto || '/assets/images/perfil.png'"> Sugerido por {{ diario.autor.full_name }}
+                  </div>
+                </ion-card>
+              </ion-col>
+            </ion-row>            
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

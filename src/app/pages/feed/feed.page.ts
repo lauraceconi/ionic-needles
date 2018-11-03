@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MenuController, Searchbar } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { LoginService } from '../../services/login.service';
+import { FeedService } from '../../services/feed.service';
 
 @Component({
   selector: 'app-feed',
@@ -13,7 +14,8 @@ export class FeedPage implements OnInit {
 
   constructor(
     public menuCtrl: MenuController,
-    private service: LoginService,
+    public loginService: LoginService,
+    public feedService: FeedService,
     private storage: Storage,
     public router: Router
   ) { }
@@ -24,8 +26,10 @@ export class FeedPage implements OnInit {
   public listaUsuarios: any = [];
   public listaUsuariosFiltrados: any = [];
   public mensagemFiltro: string;
+  public recomendacoes: any;
 
   ngOnInit() {
+    this.getFeed();
     this.getListaUsuarios();
     document.getElementById('menu').style.display = '';
 
@@ -35,7 +39,7 @@ export class FeedPage implements OnInit {
       if (dados) {
         this.dados = dados;
       } else {
-        this.service.getDadosUsuarioLogado().then(response => {
+        this.loginService.getDadosUsuarioLogado().then(response => {
           this.storage.set('dadosUsuario', JSON.stringify(response));
           this.dados = response;
         });
@@ -48,7 +52,7 @@ export class FeedPage implements OnInit {
   }
 
   public getListaUsuarios() {
-    this.service.getUsuarios().then(response => {
+    this.loginService.getUsuarios().then(response => {
       this.listaUsuarios = response;
     });
   }
@@ -82,6 +86,20 @@ export class FeedPage implements OnInit {
     this.searchbar.value = '';
     this.listaUsuariosFiltrados = [];
     this.mensagemFiltro = '';
+  }
+
+  public getFeed() {
+    this.feedService.getFeed().then(response => {
+      this.recomendacoes = response;
+    });
+  }
+
+  public acessarRecomendacao(id) {
+    this.router.navigate(['recomendacoes/', id]);
+  }
+
+  public acessarDiario(id) {
+    this.router.navigate(['diarios/', id]);
   }
 
 }
