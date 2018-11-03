@@ -43,7 +43,7 @@
                 <p>{{ recomendacao.descricao }}</p>
               </ion-card-content>
               <div class="card-footer">
-                <img [src]="recomendacao.autor.foto || '/assets/images/perfil.png'"> Solicitado por {{ recomendacao.autor.full_name }}
+                <img [src]="recomendacao.autor.foto | getFotoUrl"> Solicitado por {{ recomendacao.autor.full_name }}
               </div>
             </ion-card>
             <ion-row>
@@ -56,7 +56,7 @@
                     <p>{{ diario.titulo }}</p>
                   </ion-card-content>
                   <div class="card-footer">
-                    <img [src]="recomendacao.autor.foto || '/assets/images/perfil.png'"> Sugerido por {{ diario.autor.full_name }}
+                    <img [src]="recomendacao.autor.foto | getFotoUrl"> Sugerido por {{ diario.autor.full_name }}
                   </div>
                 </ion-card>
               </ion-col>

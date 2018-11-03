@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
+import { PerfilService } from '../../services/perfil.service';
 
 @Component({
   selector: 'app-modal-perfil',
@@ -11,28 +12,25 @@ export class ModalPerfilComponent implements OnInit {
 
   constructor(
     public modalCtrl: ModalController,
-    public storage: Storage
+    public storage: Storage,
+    public service: PerfilService
   ) { }
 
   @Input('dados') dados : any;
-  //public dados: any;
-
-  ngOnInit() {
-    //this.getDadosUsuarioLogado();
-  }
+  public nova_foto: any;
 
   public fecharModal() {
     this.modalCtrl.dismiss();
   }
 
-  public getDadosUsuarioLogado() {
-    this.storage.get('dadosUsuario').then(dados => {
-      this.dados = JSON.parse(dados);
-    });
+  public uploadFoto(event) {
+    this.nova_foto = event.target.files[0];
   }
 
-  public uploadFoto(event) {
-    this.dados.foto = event.target.files[0];
+  public atualizarPerfil() {
+    this.service.atualizarPerfil(this.dados, this.nova_foto).then(request => {
+      this.fecharModal();
+    });
   }
 
 }

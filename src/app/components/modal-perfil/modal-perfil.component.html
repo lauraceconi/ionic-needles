@@ -25,6 +25,8 @@
           </ion-item>
           <ion-item>
             <ion-label>Foto</ion-label>
+          </ion-item>
+          <ion-item>
             <input type="file" (change)="uploadFoto($event)">
           </ion-item>
         </ion-list>
@@ -34,8 +36,8 @@
                       !dados.first_name || 
                       !dados.last_name || 
                       !dados.email || 
-                      !dados.password" 
-                    (click)="cadastro()">
+                      !nova_foto" 
+                    (click)="atualizarPerfil()">
           Salvar
         </ion-button>
   </ion-content>

@@ -6,9 +6,12 @@
 }
 
 .foto-perfil {
-    border: 8px solid #f8f8f8;
-    border-radius: 50%;
-    width: 100px;
-    display: block;
-    margin: -70px auto 0 auto;
+    img {
+        border: 8px solid #f8f8f8;
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        display: block;
+        margin: -70px auto 0 auto;
+    }
 }

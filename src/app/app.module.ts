@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 
 import { ModalAlertaComponent } from './components/modal-alerta/modal-alerta.component';
 import { DiarioService } from './services/diario.service';
+import { PipesModule } from './pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { DiarioService } from './services/diario.service';
     }),
     HttpClientModule,
     FormsModule,
+    PipesModule
   ],
   providers: [
     StatusBar,

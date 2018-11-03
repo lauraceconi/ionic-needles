@@ -202,6 +202,21 @@ ion-item ion-label p {
     color: #666;
 }
 
+.card-tipo {    
+    color: #fff;
+    padding: 8px 15px;
+    ion-icon {
+        font-size: 20px;
+        margin-bottom: -5px;
+    }
+    &.recomendacao {
+        background-color: #2989d8;
+    }
+    &.diario {
+        background-color: #ff7979;
+    }
+}
+
 @media (min-width: 800px) {
     ion-card:not(.card-item) {
         width: 47%!important;

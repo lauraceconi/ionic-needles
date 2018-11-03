@@ -20,7 +20,9 @@
         <ion-input [(ngModel)]="local.descricao"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Foto</ion-label>
+        <ion-label>Foto</ion-label>
+      </ion-item>
+      <ion-item>        
         <input type="file" (change)="uploadArquivo($event)">
       </ion-item>
       <ion-button expand="block" 

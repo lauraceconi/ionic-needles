@@ -18,11 +18,11 @@
   <div class="topo-perfil"></div>
 
   <div class="foto-perfil">
-    <img [src]="dados.foto || '/assets/images/perfil.png'">
+    <img [src]="dados.foto | getFotoUrl">
   </div>
 
   <h3 class="text-center">{{ dados.full_name }}</h3>
-  <h4>{{ dados.username }}</h4>
+  <h4>{{ dados.email }}</h4>
 
   <hr>
 
@@ -55,6 +55,35 @@
         {{ dados.full_name }} segue você
       </ion-col>
     </ion-row>
+    <ion-row *ngIf="!perfilUsuario">
+      <ion-col size-lg="6" size="12">
+        <ion-row *ngIf="!dados.sigo">
+          <ion-card size="12" class="card-item">
+            <ion-card-content>
+              Siga esta pessoa para ver suas solicitações de recomendações
+            </ion-card-content>
+          </ion-card>
+        </ion-row>
+        <ion-row *ngIf="dados.sigo">
+          <ion-col size="12" style="margin:0 auto;">
+            <ion-card class="card-item" *ngIf="!dados.recomendacoes?.length">
+              <ion-card-content>
+                Esta pessoa ainda não criou nenhuma solicitação de recomendação
+              </ion-card-content>
+            </ion-card>                  
+            <div *ngIf="dados.recomendacoes?.length">
+              <ion-card size="12" class="card-item" *ngFor="let recomendacao of dados.recomendacoes" (click)="acessarRecomendacao(dados.recomendacao.id)">
+                <div class="card-tipo recomendacao">
+                  <ion-icon name="megaphone"></ion-icon> Solicitação de recomendação
+                </div>
+                <ion-card-content>
+                  <p>{{ recomendacao.descricao }}</p>
+                </ion-card-content>
+              </ion-card>
+            </div> 
+          </ion-col>           
+        </ion-row>
+      </ion-col>
+    </ion-row>
   </ion-grid>
-
 </ion-content>
