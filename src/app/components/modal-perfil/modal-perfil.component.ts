@@ -19,6 +19,8 @@ export class ModalPerfilComponent implements OnInit {
   @Input('dados') dados : any;
   public nova_foto: any;
 
+  ngOnInit() { }
+
   public fecharModal() {
     this.modalCtrl.dismiss();
   }
