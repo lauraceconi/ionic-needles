@@ -8,20 +8,33 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card *ngIf="!recomendacaoUsuario">
+  <ion-card>
     <ion-card-header>
       <ion-card-title>{{ local.nome }}</ion-card-title>
       <ion-card-subtitle>{{ local.descricao }}</ion-card-subtitle>
     </ion-card-header>
   </ion-card>
 
-  <ion-card *ngIf="!recomendacaoUsuario">
+  <ion-card *ngIf="local?.foto">
     <ion-item-divider>
       Fotos
     </ion-item-divider>
     <ion-card-content>
       <img [src]="local.foto">
     </ion-card-content>    
+  </ion-card>
+
+  <ion-card [hidden]="!localizacao">
+    <ion-item-divider>
+      Localização
+    </ion-item-divider>
+    <div #gmap style="width:100%;height:400px"></div>
+    <div *ngIf="!localizacao">
+      <p>
+        Não foi possível encontrar sua localização atual. 
+        Por favor, habilite o GPS do seu dispositivo ou utilize um navegador mais moderno.
+      </p>
+    </div>
   </ion-card>
 
 </ion-content>

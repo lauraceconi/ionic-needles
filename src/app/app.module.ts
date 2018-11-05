@@ -22,7 +22,7 @@ import { PipesModule } from './pipes/pipes.module';
 @NgModule({
   declarations: [
     AppComponent,
-    ModalAlertaComponent
+    ModalAlertaComponent,
   ],
   entryComponents: [
     ModalAlertaComponent

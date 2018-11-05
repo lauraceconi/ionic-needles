@@ -17,17 +17,14 @@ export class ModalLocalComponent implements OnInit {
 
   @Input('diario_id') diario_id : string;
   @ViewChild('gmap') gmapElement: any;
-  @ViewChild('pacInput') pacInput: any;
   public map: google.maps.Map;
   public local: any = {};
   public localizacao: boolean;
   public marker: any;
-  lat: number = 51.678418;
-  lng: number = 7.809007;
 
 
   ngOnInit() {
-    var mapProp = {
+    const mapProp = {
       center: new google.maps.LatLng(18.5793, 73.8143),
       zoom: 16,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -37,17 +34,23 @@ export class ModalLocalComponent implements OnInit {
     this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
 
     this.map.addListener('click', event => {
+      this.local['latitude'] = event.latLng.lat();
+      this.local['longitude'] = event.latLng.lng();
       if (!this.marker) {
         this.marker = new google.maps.Marker({
-          position: { lat: event.latLng.lat(), lng: event.latLng.lng() },
-          icon: '/assets/images/placeholder.png'
+          position: { lat: this.local['latitude'], lng: this.local['longitude'] },
+          icon: {
+            url: '/assets/images/placeholder.png',
+            size: new google.maps.Size(30, 30),
+            scaledSize: new google.maps.Size(30, 30)
+          }
         });
-        marker.setMap(this.map);
+        this.marker.setMap(this.map);
       } else {
-        marker.setPosition(
+        this.marker.setPosition(
           new google.maps.LatLng(
-            event.latLng.lat(),
-            event.latLng.lng())
+            this.local['latitude'],
+            this.local['longitude'])
         );
       }
     });
@@ -66,14 +69,14 @@ export class ModalLocalComponent implements OnInit {
     this.modalCtrl.dismiss();
   }
 
+  public uploadArquivo(event) {
+    this.local.foto = event.target.files[0];
+  }
+
   public adicionarLocal() {
     this.service.adicionarLocal(this.diario_id, this.local).then(response => {
       this.fecharModal();
     });
-  }
-
-  public uploadArquivo(event) {
-    this.local.foto = event.target.files[0];
   }
 
 }
