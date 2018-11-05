@@ -36,10 +36,13 @@ export class DiarioDetalhePage implements OnInit {
     this.router.navigate(['/local', id]);
   }
 
-  public async abrirModalLocal() {
+  public async abrirModalLocal(local_id = null) {
     const modal = await this.modalCtrl.create({
       component: ModalLocalComponent,
-      componentProps: { diario_id: this.diario_id }
+      componentProps: {
+        diario_id: this.diario_id,
+        local_id: local_id
+      }
     });
     modal.onDidDismiss().then(() => {
       this.getDetalhesDiario();

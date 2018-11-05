@@ -16,6 +16,7 @@ export class ModalLocalComponent implements OnInit {
   }
 
   @Input('diario_id') diario_id : string;
+  @Input('local_id') local_id : string;
   @ViewChild('gmap') gmapElement: any;
   public map: google.maps.Map;
   public local: any = {};
@@ -24,6 +25,11 @@ export class ModalLocalComponent implements OnInit {
 
 
   ngOnInit() {
+
+    if (this.local_id) {
+      this.getDetalhesLocal();
+    }
+
     const mapProp = {
       center: new google.maps.LatLng(18.5793, 73.8143),
       zoom: 16,
@@ -71,6 +77,12 @@ export class ModalLocalComponent implements OnInit {
 
   public uploadArquivo(event) {
     this.local.foto = event.target.files[0];
+  }
+
+  public getDetalhesLocal() {
+    this.service.getDetalhesLocal(this.local_id).then(response => {
+      this.local = response;
+    });
   }
 
   public adicionarLocal() {
