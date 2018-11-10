@@ -10,22 +10,18 @@ import { Storage } from '@ionic/storage';
 })
 export class LoginPage implements OnInit {
 
-  public dados_login: object = {};
-  public dados_cadastro: object = {};
-  public abaAtiva: string;
-
   constructor(
     public menuCtrl: MenuController,
     public service: LoginService,
     public storage: Storage,
     public router: Router,
     private events: Events
-  ) {
+  ) { }
 
-    this.events.subscribe('logout', () => {
-      this.router.navigateByUrl('/login');
-    });
-  }
+  public dados_login: object = {};
+  public dados_cadastro: object = {};
+  public abaAtiva: string;
+  public erros: any = {};
 
   ionViewWillEnter() {
     this.storage.get('token').then(token => {
@@ -65,10 +61,22 @@ export class LoginPage implements OnInit {
     for (let key in this.dados_cadastro) {
       dados[key] = this.dados_cadastro[key];
     }
-    this.service.cadastro(dados).then(() => {
-      this.dados_login['username'] = this.dados_cadastro['email'];
-      this.dados_login['password'] = this.dados_cadastro['password'];
-      this.login();
+    this.service.cadastro(dados).then((response) => {
+      if (response['status'] == 400 || response['status'] == 500) {
+        const chaves = Object.keys(response['error']);
+        for (let i in chaves) {
+          this.erros[chaves[i]] = response['error'][chaves[i]];
+        }
+      } else {
+        this.dados_login['username'] = this.dados_cadastro['email'];
+        this.dados_login['password'] = this.dados_cadastro['password'];
+        this.login();
+      }
     });
+  }
+
+  public removeErro(campo) {
+    const mensagemCampo = this.erros[campo];
+    if (mensagemCampo) { delete this.erros[campo]; }
   }
 }

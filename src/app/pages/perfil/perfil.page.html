@@ -18,61 +18,82 @@
   <div class="topo-perfil"></div>
 
   <div class="foto-perfil">
-    <img [src]="dados.foto | getFotoUrl">
+    <img [src]="dados?.foto | getFotoUrl">
   </div>
 
-  <h3 class="text-center">{{ dados.full_name }}</h3>
-  <h4>{{ dados.email }}</h4>
+  <h3 class="text-center">{{ dados?.full_name }}</h3>
+  <h4>{{ dados?.email }}</h4>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size-lg="6" size="12" style="margin: 0 auto">
+        <ion-row>
+          <ion-col size="12">
+            <ion-card class="card-item">
+              <ion-row>
+                <ion-col size="6" class="text-center">
+                  {{ dados?.seguindo }}
+                  <br/>Seguindo
+                </ion-col>
+                <ion-col size="6" class="text-center">
+                  {{ dados?.seguidores }}
+                  <br/>Seguidores
+                </ion-col>
+              </ion-row> 
+            </ion-card>
+            <ion-card class="card-item" [hidden]="!dados?.cidade_natal || !dados?.cidade_atual">
+              <div class="card-tipo recomendacao text-center">
+                <ion-icon name="person"></ion-icon> Sobre
+              </div>
+              <h4 [hidden]="!dados?.cidade_natal">Cidade natal: {{ dados?.cidade_natal }}</h4>
+              <h4 [hidden]="!dados?.cidade_atual">Cidade atual: {{ dados?.cidade_atual }}</h4>                           
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
   <hr>
 
   <ion-grid>
-    <ion-row>
-      <ion-col class="text-center" >
-        {{ dados.seguindo }}
-        <br/>Seguindo
-      </ion-col>
-      <ion-col class="text-center">
-        {{ dados.seguidores }}
-        <br/>Seguidores
-      </ion-col>
-    </ion-row>
     <ion-row *ngIf="!perfilUsuario">
-      <ion-col size="12" *ngIf="!dados.sigo">
-        <ion-button expand="block" (click)="setClassificacao()">
-          <ion-icon name="person-add" slot="start"></ion-icon>
-          Seguir
-        </ion-button>
-      </ion-col>
-      <ion-col size="12" *ngIf="dados.sigo">
-        <ion-button expand="block" (click)="setClassificacao()" color="secondary">
-          <ion-icon name="contacts" slot="start"></ion-icon>
-          <!-- TODO: DEIXAR DE SEGUIR E MODIFICAR RELAÇÃO -->
-          Seguindo
-        </ion-button>
-      </ion-col>
-      <ion-col size="12" *ngIf="dados.me_segue">
-        {{ dados.full_name }} segue você
-      </ion-col>
-    </ion-row>
-    <ion-row *ngIf="!perfilUsuario">
-      <ion-col size-lg="6" size="12">
-        <ion-row *ngIf="!dados.sigo">
-          <ion-card size="12" class="card-item">
-            <ion-card-content>
-              Siga esta pessoa para ver suas solicitações de recomendações
-            </ion-card-content>
-          </ion-card>
+      <ion-col size-lg="6" size="12" *ngIf="!dados?.sigo" style="margin: 0 auto;">
+        <ion-row>
+          <ion-col size="12">
+            <ion-button expand="block" (click)="setClassificacao()">
+              <ion-icon name="person-add" slot="start"></ion-icon>
+              Seguir
+            </ion-button>
+          </ion-col>
+          <ion-col size="12" *ngIf="dados?.sigo">
+            <ion-button expand="block" (click)="setClassificacao()" color="secondary">
+              <ion-icon name="contacts" slot="start"></ion-icon>
+              Seguindo
+            </ion-button>
+          </ion-col>
+          <ion-col size="12" *ngIf="dados?.me_segue">
+            {{ dados?.full_name }} segue você
+          </ion-col>
         </ion-row>
-        <ion-row *ngIf="dados.sigo">
-          <ion-col size="12" style="margin:0 auto;">
-            <ion-card class="card-item" *ngIf="!dados.recomendacoes?.length">
+      </ion-col>      
+    </ion-row>
+    <ion-row *ngIf="!perfilUsuario">
+      <ion-col size-lg="6" size="12" style="margin: 0 auto;">
+        <ion-row>
+          <ion-col size="12">
+            <ion-card class="card-item" *ngIf="!dados?.sigo">
+              <ion-card-content>
+                Siga esta pessoa para ver suas solicitações de recomendações
+              </ion-card-content>
+            </ion-card>
+            <ion-card class="card-item" *ngIf="dados?.sigo && !dados?.recomendacoes?.length">
               <ion-card-content>
                 Esta pessoa ainda não criou nenhuma solicitação de recomendação
               </ion-card-content>
-            </ion-card>                  
-            <div *ngIf="dados.recomendacoes?.length">
-              <ion-card size="12" class="card-item" *ngFor="let recomendacao of dados.recomendacoes" (click)="acessarRecomendacao(dados.recomendacao.id)">
+            </ion-card>
+            <div *ngIf="dados?.sigo && dados.recomendacoes?.length">
+              <ion-card class="card-item" *ngFor="let recomendacao of dados?.recomendacoes" (click)="acessarRecomendacao(dados?.recomendacao.id)">
                 <div class="card-tipo recomendacao">
                   <ion-icon name="megaphone"></ion-icon> Solicitação de recomendação
                 </div>
@@ -80,8 +101,8 @@
                   <p>{{ recomendacao.descricao }}</p>
                 </ion-card-content>
               </ion-card>
-            </div> 
-          </ion-col>           
+            </div>
+          </ion-col>    
         </ion-row>
       </ion-col>
     </ion-row>

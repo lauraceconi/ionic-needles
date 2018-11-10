@@ -7,11 +7,8 @@ import { SETTINGS } from '../settings';
 export class GetFotoUrlPipe implements PipeTransform {
 
   transform(value: string, args?: any): string {
-    if (value) {
-      return SETTINGS.SERVIDOR + (value).replace('/', '');
-    } else {
-      return '/assets/images/perfil.png';
-    }
+    if (!value) { return '/assets/images/perfil.png'; }
+    return value;
   }
 
 }

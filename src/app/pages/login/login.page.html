@@ -12,9 +12,12 @@
           <ion-label position="floating">Sobrenome</ion-label>
           <ion-input [(ngModel)]="dados_cadastro.last_name"></ion-input>
         </ion-item>
-        <ion-item>
+        <ion-item [class.erro]="erros.email">
           <ion-label position="floating">E-mail</ion-label>
-          <ion-input [(ngModel)]="dados_cadastro.email" type="email"></ion-input>
+          <ion-input [(ngModel)]="dados_cadastro.email" type="email" (click)="removeErro('email')"></ion-input>
+        </ion-item>
+        <ion-item class="mensagem-erro" *ngIf="erros.email">
+          {{ erros.email }}
         </ion-item>
         <ion-item>
           <ion-label position="floating">Senha</ion-label>

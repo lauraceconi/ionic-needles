@@ -57,7 +57,7 @@
       <ion-item *ngIf="recomendacao.seguidores">
         Seguidores
       </ion-item>
-      <ion-item detail="true" href="#" *ngFor="let grupo of recomendacao.grupos" (click)="acessarGrupo($event, diario.id)">
+      <ion-item detail="true" href="#" *ngFor="let grupo of recomendacao.grupos" (click)="acessarGrupo($event, grupo.id)">
         <ion-label text-wrap>
           <p>{{ grupo.name }}</p>
         </ion-label>

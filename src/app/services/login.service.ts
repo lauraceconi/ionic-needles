@@ -62,7 +62,7 @@ export class LoginService {
   public sendLogoutEvent(): void {
     this.storage.clear().then(
       data => {
-        this.events.publish('logout');
+        this.events.publish('realizarLogout');
       }
     );
   }

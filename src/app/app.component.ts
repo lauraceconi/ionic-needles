@@ -23,6 +23,9 @@ export class AppComponent {
     private events: Events
   ) {
     this.initializeApp();
+    this.events.subscribe('realizarLogout', () => {
+      this.logout();
+    });
   }
 
   public appPages = [

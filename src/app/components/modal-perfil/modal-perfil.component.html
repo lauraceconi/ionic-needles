@@ -24,6 +24,21 @@
             <ion-input [(ngModel)]="dados.email" type="email"></ion-input>
           </ion-item>
           <ion-item>
+            <ion-label position="floating" class="item-has-focus">Data de Nascimento</ion-label>
+            <ion-input type="date"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Cidade Natal</ion-label>
+            <ion-input [(ngModel)]="dados.cidade_natal"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Cidade Atual</ion-label>
+            <ion-input [(ngModel)]="dados.cidade_atual"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-textarea [(ngModel)]="dados.descricao" placeholder="Conte um pouco sobre você"></ion-textarea>
+          </ion-item>
+          <ion-item>
             <ion-label>Foto</ion-label>
           </ion-item>
           <ion-item>
@@ -32,11 +47,6 @@
         </ion-list>
         <ion-button expand="block" 
                     color="primary" 
-                    [disabled]="
-                      !dados.first_name || 
-                      !dados.last_name || 
-                      !dados.email || 
-                      !nova_foto" 
                     (click)="atualizarPerfil()">
           Salvar
         </ion-button>

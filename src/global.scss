@@ -224,3 +224,19 @@ ion-item ion-label p {
         margin-left: auto!important;
     }
 }
+
+ion-item {
+    &.erro {
+        --border-color: red;
+    }
+    &.mensagem-erro {
+        font-size: 12px;
+        color: red;
+    }
+}
+
+.login-form {
+    ion-item {
+        --padding-start: 0;
+    }
+}

@@ -27,7 +27,7 @@
     </ion-list>  
   </ion-card>
 
-  <ion-card>
+  <ion-card *ngIf="grupo.recomendacoes?.length">
     <ion-list lines="full">
       <ion-item-divider>
         Recomendações solicitadas ao grupo
