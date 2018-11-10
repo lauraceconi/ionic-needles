@@ -45,8 +45,15 @@
               <div class="card-tipo recomendacao text-center">
                 <ion-icon name="person"></ion-icon> Sobre
               </div>
-              <h4 [hidden]="!dados?.cidade_natal">Cidade natal: {{ dados?.cidade_natal }}</h4>
-              <h4 [hidden]="!dados?.cidade_atual">Cidade atual: {{ dados?.cidade_atual }}</h4>                           
+              <ion-item [hidden]="!dados?.descricao">
+                <p>Sobre mim: {{ dados?.descricao }}</p>
+              </ion-item>
+              <ion-item [hidden]="!dados?.cidade_natal">
+                <h4>Cidade natal: {{ dados?.cidade_natal }}</h4>                
+              </ion-item>
+              <ion-item [hidden]="!dados?.cidade_atual">
+                <h4>Cidade atual: {{ dados?.cidade_atual }}</h4>
+              </ion-item>
             </ion-card>
           </ion-col>
         </ion-row>

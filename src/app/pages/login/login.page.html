@@ -34,8 +34,11 @@
                   (click)="cadastro()">
         Cadastrar
       </ion-button>
-      <p>Já possui conta? <a href="" (click)="trocarAba($event, 'login')">Entrar</a>
-      </p>
+      <p>Já possui conta? <a href="" (click)="trocarAba($event, 'login')">Entrar</a></p>
+      <ion-button expand="block">
+        <ion-icon name="logo-facebook" slot="start"></ion-icon> Entrar com Facebook
+      </ion-button>
+      
     </div>
     <div *ngIf="abaAtiva == 'login'">
       <h3>Entrar</h3>
@@ -59,6 +62,9 @@
       </ion-button>
       <p>Não possui conta? <a href="" (click)="trocarAba($event, 'cadastro')">Cadastre-se</a>
       </p>
+      <ion-button expand="block">
+        <ion-icon name="logo-facebook" slot="start"></ion-icon> Entrar com Facebook
+      </ion-button>
     </div>
   </div>
 </ion-content>
