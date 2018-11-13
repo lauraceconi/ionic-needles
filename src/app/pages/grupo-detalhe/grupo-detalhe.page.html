@@ -19,7 +19,7 @@
       <ion-grid>
         <ion-row>
           <ion-col size-xs="3" size-sm="2" class="perfil-membro" *ngFor="let usuario of grupo.membros" (click)="acessarGrupo($event, grupo.id)">
-            <img [src]="usuario.foto | getFotoUrl">
+            <img [src]="usuario.foto | getFotoUrl" alt="Foto perfil">
             {{ usuario?.first_name }}
           </ion-col>
         </ion-row>

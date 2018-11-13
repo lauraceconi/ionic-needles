@@ -35,7 +35,7 @@
       <ion-col size-lg="6" size="12">
         <ion-row *ngIf="!recomendacoes?.length">
           <ion-col size-xs="12">
-            <img src="../../assets/images/puzzle.png" class="icone-pagina">
+            <img src="../../assets/images/puzzle.png" class="icone-pagina" alt="Feed">
             <p class="text-center">
               Nenhuma novidade ainda para mostrar. 
               Tente encontrar pessoas e criar grupos para trocar ideias!</p>
@@ -51,7 +51,7 @@
                 <p>{{ recomendacao.descricao }}</p>
               </ion-card-content>
               <div class="card-footer">
-                <img [src]="recomendacao.autor.foto | getFotoUrl"> Solicitado por {{ recomendacao.autor.full_name }}
+                <img [src]="recomendacao.autor.foto | getFotoUrl" alt="Foto perfil"> Solicitado por {{ recomendacao.autor.full_name }}
               </div>
             </ion-card>
             <ion-row>
@@ -64,7 +64,7 @@
                     <p>{{ diario.titulo }}</p>
                   </ion-card-content>
                   <div class="card-footer">
-                    <img [src]="recomendacao.autor.foto | getFotoUrl"> Sugerido por {{ diario.autor.full_name }}
+                    <img [src]="recomendacao.autor.foto | getFotoUrl" alt="Foto perfil"> Sugerido por {{ diario.autor.full_name }}
                   </div>
                 </ion-card>
               </ion-col>
