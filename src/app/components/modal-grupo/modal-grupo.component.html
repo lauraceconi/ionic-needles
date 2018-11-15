@@ -4,7 +4,7 @@
     <ion-title *ngIf="!id_grupo">Criar grupo</ion-title>
     <ion-buttons slot="primary">
       <ion-button (click)="fecharModal()">
-        <ion-icon slot="icon-only" name="close"></ion-icon>
+        <ion-icon slot="icon-only" name="close" alt="Fechar"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -29,7 +29,7 @@
     <ion-item *ngFor="let usuario of listaUsuariosFiltrados">
       {{ usuario.full_name }}
       <ion-button slot="end" fill="clear" size="large" (click)="addMembro(usuario)">
-        <ion-icon name="add-circle" slot="end"></ion-icon>
+        <ion-icon name="add-circle" slot="end" alt="Adicionar"></ion-icon>
       </ion-button>
     </ion-item>
     <p *ngIf="mensagemFiltro">
@@ -42,7 +42,7 @@
     <ion-item *ngFor="let usuario of membros">
       {{ usuario.full_name }}
       <ion-button slot="end" fill="clear" size="medium" (click)="removeMembro(usuario)" color="danger">
-        <ion-icon name="close-circle" slot="end"></ion-icon>
+        <ion-icon name="close-circle" slot="end" alt="Fechar"></ion-icon>
       </ion-button>
     </ion-item>
   </ion-list>

@@ -8,7 +8,7 @@
     </ion-title>
     <ion-buttons slot="end">
       <ion-button fill="clear" (click)="toggleBarraPesquisa()">
-        <ion-icon name="search"></ion-icon>        
+        <ion-icon name="search" alt="Pesquisar"></ion-icon>        
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -45,7 +45,7 @@
           <ion-col size="12" *ngFor="let recomendacao of recomendacoes">
             <ion-card class="card-item" (click)="acessarRecomendacao(recomendacao.id)">
               <div class="card-tipo recomendacao">
-                <ion-icon name="megaphone"></ion-icon> Solicitação de recomendação
+                <ion-icon name="megaphone" alt="Recomendação"></ion-icon> Solicitação de recomendação
               </div>
               <ion-card-content>
                 <p>{{ recomendacao.descricao }}</p>
@@ -58,7 +58,7 @@
               <ion-col size="11" offset="1" *ngFor="let diario of recomendacao.diarios">                
                 <ion-card class="card-item" (click)="acessarDiario(diario.id)"> 
                   <div class="card-tipo diario">
-                    <ion-icon name="paper"></ion-icon> Diário sugerido
+                    <ion-icon name="paper" alt="Diário"></ion-icon> Diário sugerido
                   </div>
                   <ion-card-content>
                     <p>{{ diario.titulo }}</p>

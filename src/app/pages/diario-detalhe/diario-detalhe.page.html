@@ -10,7 +10,7 @@
 <ion-content padding>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="abrirModalLocal()">
-      <ion-icon name="add"></ion-icon>
+      <ion-icon name="add" alt="Adicionar"></ion-icon>
     </ion-fab-button>
   </ion-fab>
   <ion-grid>
@@ -27,7 +27,7 @@
             <ion-card-header class="card-foto" [ngStyle]="{'background-image': 'url('+ local.foto +')', 'background-size': 'cover' }" *ngIf="local.foto">
             </ion-card-header>
             <ion-card-header *ngIf="!local.foto">
-              <ion-icon name="image"></ion-icon>
+              <ion-icon name="image" alt="Imagem genérica"></ion-icon>
             </ion-card-header>
             <ion-card-content>
               <ion-card-title>{{ local.nome }}</ion-card-title>
@@ -36,10 +36,10 @@
           </div>          
           <div class="card-footer buttons">
             <ion-button size="small" (click)="abrirModalLocal(local.id)" fill="clear">
-              <ion-icon size="small" slot="icon-only" name="create"></ion-icon>
+              <ion-icon size="small" slot="icon-only" name="create" alt="Editar"></ion-icon>
             </ion-button>
             <ion-button size="small" fill="clear">
-              <ion-icon size="small" slot="icon-only" name="trash"></ion-icon>
+              <ion-icon size="small" slot="icon-only" name="trash" alt="Excluir"></ion-icon>
             </ion-button>
           </div>
         </ion-card>

@@ -11,7 +11,7 @@
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="perfilUsuario">
       <ion-fab-button (click)="abrirModalEdicao()">
-        <ion-icon name="create"></ion-icon>
+        <ion-icon name="create" alt="Editar"></ion-icon>
       </ion-fab-button>
     </ion-fab>
 
@@ -43,7 +43,7 @@
             </ion-card>
             <ion-card class="card-item" [hidden]="!dados?.cidade_natal || !dados?.cidade_atual">
               <div class="card-tipo recomendacao text-center">
-                <ion-icon name="person"></ion-icon> Sobre
+                <ion-icon name="person" alt="Sobre"></ion-icon> Sobre
               </div>
               <ion-item [hidden]="!dados?.descricao">
                 <p>Sobre mim: {{ dados?.descricao }}</p>
@@ -69,13 +69,13 @@
         <ion-row>
           <ion-col size="12">
             <ion-button expand="block" (click)="setClassificacao()">
-              <ion-icon name="person-add" slot="start"></ion-icon>
+              <ion-icon name="person-add" slot="start" alt="Seguir Pessoa"></ion-icon>
               Seguir
             </ion-button>
           </ion-col>
           <ion-col size="12" *ngIf="dados?.sigo">
             <ion-button expand="block" (click)="setClassificacao()" color="secondary">
-              <ion-icon name="contacts" slot="start"></ion-icon>
+              <ion-icon name="contacts" slot="start" alt="Seguindo"></ion-icon>
               Seguindo
             </ion-button>
           </ion-col>
@@ -102,7 +102,7 @@
             <div *ngIf="dados?.sigo && dados.recomendacoes?.length">
               <ion-card class="card-item" *ngFor="let recomendacao of dados?.recomendacoes" (click)="acessarRecomendacao(dados?.recomendacao.id)">
                 <div class="card-tipo recomendacao">
-                  <ion-icon name="megaphone"></ion-icon> Solicitação de recomendação
+                  <ion-icon name="megaphone" alt="Recomendação"></ion-icon> Solicitação de recomendação
                 </div>
                 <ion-card-content>
                   <p>{{ recomendacao.descricao }}</p>
