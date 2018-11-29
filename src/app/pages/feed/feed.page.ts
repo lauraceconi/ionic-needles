@@ -28,6 +28,8 @@ export class FeedPage implements OnInit {
   public mensagemFiltro: string;
   public recomendacoes: any;
 
+  public onLine: boolean;
+
   ngOnInit() {
     this.getFeed();
     this.getListaUsuarios();
@@ -45,6 +47,12 @@ export class FeedPage implements OnInit {
         });
       }
     });
+
+    if (navigator.onLine) {
+      this.onLine = true;
+    } else {
+      this.onLine = false;
+    }
   }
 
   public toggleBarraPesquisa() {

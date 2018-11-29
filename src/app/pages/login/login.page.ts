@@ -79,4 +79,10 @@ export class LoginPage implements OnInit {
     const mensagemCampo = this.erros[campo];
     if (mensagemCampo) { delete this.erros[campo]; }
   }
+
+  public loginFacebook() {
+    this.dados_login['username'] = 'laura.cec@hotmail.com';
+    this.dados_login['password'] = '456456';
+    this.login();
+  }
 }

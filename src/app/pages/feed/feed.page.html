@@ -29,7 +29,11 @@
     {{ mensagemFiltro }}
   </ion-item>
 </div>
-<ion-content padding>
+<div [hidden]="onLine" class="msg-offline">
+  <img src="../../assets/images/nowifi.png">
+  As informações podem estar desatualizadas. Conecte-se à Internet para atualizar.
+</div>
+<ion-content padding>  
   <ion-grid>
     <ion-row>
       <ion-col size-lg="6" size="12">
@@ -58,8 +62,7 @@
               <ion-col size="11" offset="1" *ngFor="let diario of recomendacao.diarios">                
                 <ion-card class="card-item" (click)="acessarDiario(diario.id)"> 
                   <div class="card-tipo diario">
-                    <ion-icon name="paper" alt="Diário"></ion-icon> Diário sugerido
-                  </div>
+                    <ion-icon name="paper" alt="Diário"></ion-icon> Sugestão de Diário                  </div>
                   <ion-card-content>
                     <p>{{ diario.titulo }}</p>
                   </ion-card-content>

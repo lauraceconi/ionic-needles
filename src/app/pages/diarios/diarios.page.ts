@@ -17,9 +17,16 @@ export class DiariosPage implements OnInit {
   ) { }
 
   public diarios: any;
+  public onLine: boolean;
 
   ngOnInit() {
     this.carregarDiarios();
+
+    if (navigator.onLine) {
+      this.onLine = true;
+    } else {
+      this.onLine = false;
+    }
   }
 
   public carregarDiarios() {
@@ -61,4 +68,44 @@ export class DiariosPage implements OnInit {
     });
     await alert.present();
   }
+
+  async compartilhar() {
+    const alert = await this.alertController.create({
+      header: 'Compartilhar com:',
+      inputs: [
+        {
+          name: 'checkbox1',
+          type: 'checkbox',
+          label: 'Seguidores',
+          value: 'value1',
+          checked: true
+        },
+
+        {
+          name: 'checkbox2',
+          type: 'checkbox',
+          label: 'Grupo do vôlei',
+          value: 'value2'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Ok',
+          handler: () => {
+            console.log('Confirm Ok');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
 }

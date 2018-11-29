@@ -7,8 +7,13 @@
   </ion-toolbar>
 </ion-header>
 
+<div [hidden]="onLine" class="msg-offline">
+  <img src="../../assets/images/nowifi.png">
+  Algumas funcionalidades podem estar indisponíveis no momento.
+</div>
+
 <ion-content padding>
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" [hidden]="!onLine">
     <ion-fab-button (click)="criarNovoDiario()">
       <ion-icon name="add" alt="Adicionar"></ion-icon>
     </ion-fab-button>
@@ -35,6 +40,9 @@
             </ion-button>
             <ion-button size="small" fill="clear">
               <ion-icon size="small" slot="icon-only" name="trash" alt="Excluir"></ion-icon>
+            </ion-button>
+            <ion-button size="small" (click)="compartilhar()" fill="clear">
+              <ion-icon size="small" slot="icon-only" name="share" alt="Compartilhar"></ion-icon>
             </ion-button>
           </div>
         </ion-card>

@@ -2,7 +2,7 @@
   "name": "Wanderlust",
   "short_name": "Wanderlust",
   "theme_color": "#69d2e7",
-  "background_color": "#f38630",
+  "background_color": "#ff7979",
   "display": "standalone",
   "scope": "/",
   "start_url": "/",

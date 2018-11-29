@@ -35,7 +35,7 @@
         Cadastrar
       </ion-button>
       <p>Já possui conta? <a href="" (click)="trocarAba($event, 'login')">Entrar</a></p>
-      <ion-button expand="block">
+      <ion-button expand="block" (click)="loginFacebook()">
         <ion-icon name="logo-facebook" slot="start" alt="Ícone Facebook"></ion-icon> Entrar com Facebook
       </ion-button>
       
@@ -62,7 +62,7 @@
       </ion-button>
       <p>Não possui conta? <a href="" (click)="trocarAba($event, 'cadastro')">Cadastre-se</a>
       </p>
-      <ion-button expand="block">
+      <ion-button expand="block" (click)="loginFacebook()">
         <ion-icon name="logo-facebook" slot="start" alt="Ícone Facebook"></ion-icon> Entrar com Facebook
       </ion-button>
     </div>

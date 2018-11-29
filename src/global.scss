@@ -241,3 +241,14 @@ ion-item {
         --padding-start: 0;
     }
 }
+
+.msg-offline {
+    background-color: #ffa5a5;
+    padding: 8px;
+    font-size: 14px;
+    color: #fff;
+    img {
+        float: left;
+        margin-right: 15px;        
+    }
+}
